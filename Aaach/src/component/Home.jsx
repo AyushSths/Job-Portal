@@ -335,7 +335,7 @@ export default function Home(props) {
 
                                     <div className='col-sm-6  col-md-2 p-1'>
                                         <Link to={`/products/${product._id}`}>
-                                            <div class="card product " >
+                                            <div class="card product dfgdfg" >
 
                                                 {/* <img src={"https://res.cloudinary.com/dtv8dtpkm/image/upload/v1679221462/cnlv5glezaixgasigxvk.webp"} class="card-img-top" alt="..." /> */}
                                                 <img src={product.images[0] || ImgnotFound} class="card-img-top" alt="..." />
