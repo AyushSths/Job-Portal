@@ -1,0 +1,198 @@
+.home .container {
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home .container .info {
+    max-width: 50%;
+    color: white;
+    position: relative;
+    top: 105px;
+}
+
+.home_img {
+    height: 600px;
+    vertical-align: middle;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+    filter: blur(1px);
+}
+
+.dark-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Adjust the opacity (last value) to make it darker or lighter */
+    z-index: -1;
+}
+
+.form-control {
+    height: 50px;
+    font-size: 18px;
+}
+
+.info .btn-outline-success {
+    color: white;
+    /* font-size: 18px; */
+    background-color: #198745;
+    width: 8%;
+    position: relative;
+    /* right: 13px; */
+    top: -11px;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.info .btn-outline-success:hover {
+    background-color: #166a37;
+    border: none;
+}
+
+.info .btn-outline-success img {
+    width: 20px;
+}
+
+.categorey {
+    background: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    width: 60%;
+    padding: 30px;
+    position: relative;
+    top: 280px;
+    padding-bottom: 0px;
+    border-radius: 5px;
+    box-shadow: 5px 10px 8px #e4e4e4;
+
+}
+
+.categorey .cat_list {
+    margin-bottom: 20px;
+    margin-right: 40px;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.5s ease;
+    border-radius: 5px;
+}
+
+.categorey .cat_list:hover {
+    background-color: #f0f0f0;
+    box-shadow: 5px 10px 8px #e4e4e4;
+    color: #198745;
+}
+
+.categorey .cat_list .cat_img {
+    display: flex;
+    justify-content: center;
+    /* width: 100px; */
+}
+
+.section-list {
+    background-color: #ffffff;
+    position: relative;
+    top: 320px;
+    width: 60%;
+    margin: auto;
+    padding: 15px;
+    box-shadow: 5px 10px 8px #e4e4e4;
+}
+
+.tab-menu {
+    position: absolute;
+    list-style: none;
+    right: 70px;
+    top: 10px;
+    /* z-index: 999;
+    font-size: 14px; */
+}
+
+.tab-menu .menu-item {
+    border-radius: 5px 5px 0px 0px;
+    padding: 8px;
+    border-bottom: none;
+    transition: 0.3s ease;
+}
+
+.tab-menu .menu-item:hover {
+    background-color: #198745;
+}
+
+.item-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease;
+}
+
+.tab-menu .menu-item .item-link:hover {
+    color: #ffffff;
+}
+
+/* Jobs */
+
+.jobs {
+    position: relative;
+    top: 5px;
+    /* width: 60%; */
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.top-jobs {
+    border: 1px solid #e8e8e8;
+    height: 118px;
+    position: relative;
+    top: -27px;
+    padding: 10px;
+}
+
+.item-content {
+    position: absolute;
+    top: 5px;
+    /* right: 640px; */
+    left: 155px;
+}
+
+.apply-btn .app-link button {
+    top: 20px;
+    position: absolute;
+    right: 15px;
+    display: inline-block;
+    margin: 15px;
+    padding: 7px 40px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #198745;
+}
+
+.apply-btn .app-link button:hover {
+    color: black;
+    background: transparent;
+    box-shadow: inset 0 0 0 0 #198745;
+    border: 2px solid #198745;
+}
+
+.apply-btn .app-link button:active {
+    transform: scale(0.9);
+}
