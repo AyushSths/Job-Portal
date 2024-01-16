@@ -69,7 +69,7 @@ function Home() {
                     <div className="cat_list">
                         <div className='cat_img'><img src={accounting} alt="" /></div>
                         <div className="cat_desc" style={{ marginTop: "10px" }}>
-                            <p>Accounting / Finance</p>
+                            <p><Link to="/categorey" className='link'>Accounting / Finance</Link></p>
                         </div>
                     </div>
                     <div className="cat_list">

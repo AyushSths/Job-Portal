@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import money from "../../assets/images/money.png"
-import location from "../../assets/images/location.png"
-import clock from "../../assets/images/clock.png"
+import money from "../assets/images/money.png"
+import location from "../assets/images/location.png"
+import clock from "../assets/images/clock.png"
+import home_image from '../assets/images/home_image.jpg'
+import search from "../assets/images/search.png"
 import axios from "axios"
-function NormalJobs() {
+function Categorey() {
     const [jobs, setJobs] = useState(null)
 
     function fetchData() {
@@ -22,10 +24,22 @@ function NormalJobs() {
     }, [])
     return (
         <>
+            <div className="container">
+                <img src={home_image} alt="" className='home_img' />
+                <div class="dark-overlay"></div>
+                <div className="info">
+                    <h1 style={{ display: "block", textAlign: "center", fontSize: "60px" }}>Find your dream job!</h1>
+                    <p style={{ fontSize: "30px" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit"><img src={search} alt="" /></button>
+                    </form>
+                </div>
+            </div>
             {
                 jobs?.map((item) => {
                     return (<>
-                        {item.type == "normal" ?
+                        {item.categorey == "Accounting" ?
                             <div className="top-jobs" id='top-jobs'>
                                 <div className="job-items">
                                     <div className="item-info">
@@ -66,4 +80,4 @@ function NormalJobs() {
     )
 }
 
-export default NormalJobs
+export default Categorey

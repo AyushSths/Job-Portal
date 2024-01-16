@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import accounting from "../../assets/images/accounting.png"
+import money from "../../assets/images/money.png"
+import location from "../../assets/images/location.png"
+import clock from "../../assets/images/clock.png"
 import axios from "axios"
 function TopJobs() {
     const [jobs, setJobs] = useState(null)
@@ -33,19 +35,19 @@ function TopJobs() {
                                         <div className="item-content">
                                             <div className="main-meta">
                                                 <div className="title-link">
-                                                    <h6><Link to="/#" className='link job-title'>{item?.name} required.</Link></h6>
-                                                    <strong>{item.company}</strong>
+                                                    <strong><Link to="/#" className='link job-title' style={{ fontSize: "18px" }}>{item?.name} required.</Link></strong>
+                                                    <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
                                                 </div>
-                                                <span className="time">Full Time</span>
                                             </div>
-                                            <div className="meta-bottom d-flex justify-content-between">
-                                                <div className="type-wrap">
-                                                    <span>Type :</span>
-                                                    <Link to="/#" className='link'>{item.type}</Link>
+                                            <div className="meta-bottom d-flex">
+                                                <div className="wraper type-wrap">
+                                                    <span><img src={location} alt="" /> {item.location}</span>
                                                 </div>
-                                                <div className="price-wrap">
-                                                    <span>Salary :</span>
-                                                    <strong>Rs.{item.offeredSalary}</strong>
+                                                <div className="wraper time-wrap">
+                                                    <span className="time"><img src={clock} alt="" /> Full Time</span>
+                                                </div>
+                                                <div className="wraper price-wrap">
+                                                    <span><img src={money} alt="" /> Rs.{item.offeredSalary}</span>
                                                 </div>
                                             </div>
                                         </div>

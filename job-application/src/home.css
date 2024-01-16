@@ -154,15 +154,16 @@
 
 .top-jobs {
     border: 1px solid #e8e8e8;
-    height: 118px;
+    height: 105px;
     position: relative;
     top: -27px;
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 .item-content {
     position: absolute;
-    top: 5px;
+    top: 8px;
     /* right: 640px; */
     left: 155px;
 }
@@ -195,4 +196,9 @@
 
 .apply-btn .app-link button:active {
     transform: scale(0.9);
+}
+
+.wraper {
+    margin-right: 20px;
+    opacity: 0.8;
 }
