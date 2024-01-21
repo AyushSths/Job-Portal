@@ -16,6 +16,11 @@ const fetchjobs = async (req, res, next) => {
     // })
 }
 
+const fetchjobs_id = async (req, res, next) => {
+    let jobs = await Job.findById(req.params.id)
+    res.send({ data: jobs })
+}
+
 const store = async (req, res, next) => {
     try {
         const { name, categorey, company, jobLevel, description, noOfVacancy, location, offeredSalary, deadline, type, createdAt, createdBy, image } = req.body;
@@ -55,5 +60,6 @@ const store = async (req, res, next) => {
 
 module.exports = {
     fetchjobs,
-    store
+    store,
+    fetchjobs_id,
 }

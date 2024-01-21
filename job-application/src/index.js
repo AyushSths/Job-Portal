@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './home.css'
-import './nav.css'
-import './users.css'
-import './footer.css'
+import './css/home.css'
+import './css/nav.css'
+import './css/users.css'
+import './css/footer.css'
+import './css/categorey.css'
+import './css/view.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'

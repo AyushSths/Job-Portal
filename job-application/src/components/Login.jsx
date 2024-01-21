@@ -1,10 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import right_arrow from '../assets/images/right-arrow.png'
+import home_image from '../assets/images/home_image.jpg'
+import search from "../assets/images/search.png"
 function Login() {
     const throwIfNamespace = false
     return (
         <>
+            <div className="home categorey-section">
+                <div className="container">
+                    <img src={home_image} alt="" className='home_img' style={{ height: "90%" }} />
+                </div>
+            </div>
             <div className="user-form">
                 <form class="form">
                     <h1 style={{ textAlign: "center" }}>Login</h1>

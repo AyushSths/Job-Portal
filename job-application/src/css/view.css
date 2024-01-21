@@ -1,0 +1,54 @@
+.view {
+    margin: auto;
+    max-width: 50%;
+}
+
+.view .banner-section {
+    justify-content: center;
+    align-items: center;
+}
+
+.view .banner-section .banner-title {
+    background-color: #eeecec;
+    padding: 60px 30px 10px 30px;
+    border-radius: 0px 0px 10px 10px;
+
+}
+
+.view .banner-section .banner-title .title {
+    margin-left: 20px;
+    display: grid;
+    align-content: end;
+}
+
+.view .banner-section img {
+    width: 90px;
+}
+
+.banner-content {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+/* .banner-content tr {
+    border: 1px solid #e3e3e3;
+    border-left: none;
+    border-right: none;
+} */
+
+/* .banner-content tr th {
+    width: 33%;
+}
+
+.banner-content tr td {
+    width: 67%;
+} */
+
+.banner-content tr th,
+.banner-content tr td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+
+}

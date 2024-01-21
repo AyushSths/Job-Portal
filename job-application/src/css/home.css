@@ -88,6 +88,10 @@
     border-radius: 5px;
 }
 
+.cat_desc {
+    opacity: 0.7;
+}
+
 .categorey .cat_list:hover {
     background-color: #f0f0f0;
     box-shadow: 5px 10px 8px #e4e4e4;
@@ -102,6 +106,7 @@
 
 .section-list {
     background-color: #ffffff;
+    border-radius: 5px;
     position: relative;
     top: 320px;
     width: 60%;
@@ -150,6 +155,7 @@
     margin: auto;
     background-color: #ffffff;
     padding: 20px;
+    border-radius: 5px;
 }
 
 .top-jobs {
