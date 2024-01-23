@@ -52,9 +52,10 @@ const store = async (req, res, next) => {
             await jobItem.save();
             res.status(201).json({ message: 'Item added in jobs successfully' });
         }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while adding the item to the jobs' });
+    } catch (err) {
+        next(err)
+        // console.error(err);
+        // res.status(500).json({ error: 'An error occurred while adding the item to the jobs' });
     }
 }
 

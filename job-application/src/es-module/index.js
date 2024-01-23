@@ -1,26 +1,54 @@
 const express = require('express')
-const mongoose = require('mongoose')
 const app = express();
 const cors = require('cors')
-
+require("./config/database")
 // Enable CORS for all routes
 app.use(cors());
-
-const db = "mongodb+srv://ayushsthx088:mongo3d2y@cluster0.nmse8gp.mongodb.net/portal-db?retryWrites=true&w=majority"
-
 app.use(express.json())
-mongoose.connect(db).then(() => {
-    console.log("Connection successful");
-}).catch((err) => {
-    console.log("Error while connecting", err)
-})
 
-// app.get('/', function (req, res) {
-//     res.send('Hello World')
-// })
 
 const job_route = require("./routes/job-r");
 app.use("/api/jobs", job_route)
+
+const users_route = require("./routes/users-r");
+app.use("/api/users", users_route)
+
+//If any of the routes path is not found
+app.use((req, res) => {
+    res.status(404).json({
+        message: "Resource not found!"
+    })
+})
+
+// Set response status to 500 (Internal Server Error)
+app.use((err, req, res, next) => {
+    let status = 500
+    let msg = "Server Error"
+    let errors = null
+    // console.log(err.errors);
+
+
+    if (err.name == "ValidationError") {
+        status = 400;
+        msg = "Bad Request"
+
+        let errors_arr = Object.entries(err.errors)
+        // console.log(errors_arr);
+        let temp = []
+
+        errors_arr.forEach(el => {
+            let obj = {}
+            obj.params = el[0];
+            obj.msg = el[1].message
+            temp.push(obj)
+        })
+
+        errors = temp
+
+    }
+
+    res.status(status).send({ msg: msg, errors })
+})
 
 app.listen(8000, () => {
     console.log("Server is running at http://localhost:8000")

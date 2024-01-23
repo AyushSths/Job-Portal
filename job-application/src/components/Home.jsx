@@ -194,12 +194,12 @@ function Home({ setCategory }) {
                                             <div className="job-items">
                                                 <div className="item-info">
                                                     <div className="item-image">
-                                                        <Link to="/#"><img src={item.image} alt="img" style={{ width: "90px" }} /></Link>
+                                                        <Link to={`/${item._id}`}><img src={item.image} alt="img" style={{ width: "90px" }} /></Link>
                                                     </div>
                                                     <div className="item-content">
                                                         <div className="main-meta">
                                                             <div className="title-link">
-                                                                <strong><Link to="/#" className='link job-title' style={{ fontSize: "18px" }}>{item?.name} required.</Link></strong>
+                                                                <strong><Link to={`/${item._id}`} className='link job-title' style={{ fontSize: "18px" }}>{item?.name} required.</Link></strong>
                                                                 <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
                                                             </div>
                                                         </div>
