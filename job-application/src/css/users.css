@@ -200,3 +200,57 @@
     font-size: 19px;
     background-color: #dedede;
 }
+
+.form h1,
+.form .button-submit {
+    animation: bounce2 1.2s;
+}
+
+.form .email-input {
+    animation: bounce 1s;
+    /* -webkit-appearance: none; */
+}
+
+.form .pwd-input {
+    animation: bounce 1.2s;
+    -webkit-appearance: none;
+}
+
+.form .flex-row {
+    animation: bounce 1.4s;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-250px);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce1 {
+    0% {
+        opacity: 0;
+        transform: translateY(250px);
+
+    }
+
+    /* 40% {
+    } */
+}
+
+@keyframes bounce2 {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes bounce4 {
+    0% {
+        transform: translateX(250px);
+        opacity: 0;
+    }
+}

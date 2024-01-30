@@ -217,3 +217,58 @@
     margin-right: 20px;
     opacity: 0.8;
 }
+
+.top-jobs {
+    animation: bounce4 1s;
+}
+
+.items {
+    animation: bounce 1s;
+}
+
+.logo {
+    animation: bounce2 1s;
+}
+
+.info h1 {
+    animation: bounce1 1s;
+}
+
+.info p {
+    animation: bounce 1.2s;
+}
+
+.info .d-flex {
+    animation: bounce 1.4s
+}
+
+.categorey {
+    animation: bounce1 1.4s;
+}
+
+/* @keyframes bounce {
+    0% {
+        transform: translateZ(250px);
+        opacity: 0;
+    }
+} */
+
+/* @keyframes bounce1 {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        transform: translateY(-100px);
+    }
+}
+
+@keyframes bounce2 {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateY(-20px);
+    }
+} */
