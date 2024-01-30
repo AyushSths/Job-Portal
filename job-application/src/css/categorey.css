@@ -1,7 +1,7 @@
 .job-cat {
     width: 55%;
-    top: 240px;
     box-shadow: 5px 10px 8px #e4e4e4;
+    margin-top: 240px;
 }
 
 .categorey-section .container img {

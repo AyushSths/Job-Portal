@@ -20,13 +20,12 @@ app.use((req, res) => {
     })
 })
 
-// Set response status to 500 (Internal Server Error)
+//Backend or Frontend error handler
 app.use((err, req, res, next) => {
     let status = 500
     let msg = "Server Error"
     let errors = null
     // console.log(err.errors);
-
 
     if (err.name == "ValidationError") {
         status = 400;

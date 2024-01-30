@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, json } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
@@ -10,6 +10,8 @@ import Register from './components/Register';
 import Footer from './components/Footer';
 import Categorey from './components/Categorey';
 import View from './components/pages/View';
+import SignUp from './components/SignUp';
+import PostJob from './components/pages/PostJob';
 
 function App() {
   const [condition, setCondition] = useState(false)
@@ -25,10 +27,11 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/:id" element={<View />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/post" element={<PostJob />} />
         </Routes>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

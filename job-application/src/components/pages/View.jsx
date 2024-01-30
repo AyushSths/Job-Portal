@@ -26,13 +26,8 @@ function View() {
 
     return (
         <>
-            <div className="home categorey-section">
-                <div className="container" style={{ marginTop: "-40px" }}>
-                    <img src={home_image} alt="" className='home_img' style={{ height: "90%" }} />
-                    {/* <div class="dark-overlay" ></div> */}
+            <div className="container blur"></div>
 
-                </div>
-            </div>
             <div className="view">
                 <div className="banner-section"  >
                     <div className="banner-title" style={{ display: "flex" }}>
@@ -41,7 +36,7 @@ function View() {
                             <h5 style={{ display: "block" }}>{jobs?.company}</h5>
                             <p>{jobs?.categorey}</p>
                             <div className="apply-btn">
-                                <Link to="" className='app-link'><button style={{ top: "165px", right: "27%" }}><span className='circle'>+</span> Apply now</button></Link>
+                                <Link to="" className='app-link'><button style={{ top: "85px" }}><span className='circle'>+</span> Apply now</button></Link>
                             </div>
                         </div>
                     </div>

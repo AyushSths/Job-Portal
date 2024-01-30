@@ -1,5 +1,5 @@
-const { Register } = require("../model/users")
-const { Login } = require("../model/users")
+const { Register } = require("../model/Users")
+const bcrypt = require("bcrypt")
 // const path = require("path")
 // const fs = require("fs")
 
@@ -9,57 +9,34 @@ const fetchregister = async (req, res, next) => {
 }
 
 const fetchlogin = async (req, res, next) => {
-    const { email, password } = req.body
+    let user = await Register.findOne({ email: req.body.email })
+    // console.log(user);
 
-    try {
-        const check = await Register.findOne({ email: email })
+    if (user) {
+        let status = await bcrypt.compare(req.body.password, user.password);
+        if (status) {
 
-        if (check) {
-            res.json("Logged in")
+            let obj = { ...user.toObject() }
+            console.log("obj", obj);
+            delete obj.password
+            // var token = jwt.sign(obj, process.env.JWT_SECRET);
+            return res.send({ data: obj, msg: "Logged in" })
         }
-        else {
-            res.json("Error logging in")
-        }
-
     }
-    catch (e) {
-        res.json("fail")
-        console.log("fail", e)
-    }
+    return res.status(401).send({ msg: "Incorrect email or password." })
 }
-
-// const fetchjobs_id = async (req, res, next) => {
-//     let jobs = await Job.findById(req.params.id)
-//     res.send({ data: jobs })
-// }
 
 const store = async (req, res, next) => {
     try {
-        const { uname, email, password, contact, role, company, education } = req.body;
-        if (!uname || !email || !password || !contact || !company || !role || !education) {
-            return res.status(400).json({ error: 'Missing required fields in the request body' });
-        }
-        const users = new Register({
-            uname: uname,
-            email: email,
-            password: password,
-            contact: contact,
-            role: role,
-            company: company,
-            education: education,
-        });
-
-        // Check if the job already exists in the chart
-        const existingUser = await Register.findOne({ email: email });
-
-        if (existingUser) {
-            res.status(200).json({ message: 'Email is already taken' });
-        } else {
-            res.status(201).json({ message: 'Register successfull' });
-            await Register.insertMany([users])
-        }
-    } catch (err) {
+        // console.log(req.body);
+        let hashed_pwd = await bcrypt.hash(req.body.password, 10)
+        let user = await Register.create({ ...req.body, password: hashed_pwd })
+        res.send(user)
+    }
+    catch (err) {
         next(err)
+        // next() calls another middleware if there is any error in this middleware
+        //If a function is passed through next(function) then it search for that middleware that got 4 parameters(err,req,res,next) 
     }
 }
 

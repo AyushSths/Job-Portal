@@ -4,6 +4,8 @@ import right_arrow from '../assets/images/right-arrow.png'
 import home_image from '../assets/images/home_image.jpg'
 import { useState } from 'react'
 import axios from "axios"
+import { useEffect } from 'react'
+import SetTimeout from './pages/SetTimeout'
 function Login() {
     const throwIfNamespace = false
     let navigate = useNavigate()
@@ -12,8 +14,10 @@ function Login() {
         email: "",
         password: "",
     }
+
     let [data, setData] = useState(form_data);
     let [error, setError] = useState("")
+
     async function handleSubmit(event) {
         event.preventDefault()
         let url = "http://localhost:8000/api/users/login"
@@ -23,56 +27,46 @@ function Login() {
                 console.log(res);
                 // console.log("username", res.data.user.name);
                 // localStorage.setItem("access token", res.data.access_token)
-                // navigate("/")
-                alert(res.data)
+                navigate("/")
+                alert(res.data?.msg)
                 //setup user data in redux
             })
             .catch(err => {
                 setError(err.response.data?.msg)
             })
-
-        // try {
-
-        //     await axios.post("http://localhost:8000/login", { data })
-        //         .then((res) => {
-        //             // dispatch(setUser(res.data.user))
-        //             // alert("Welcome")
-        //             // navigate("/Home")
-        //         })
-        //         .catch(e => {
-        //             alert("Invalid credintials")
-        //             console.log(e);
-        //         })
-
-        // }
-        // catch (e) {
-        //     console.log(e);
-
-        // }
-
     }
+
+    const [showError, setShowError] = useState(false);
+
+    useEffect(() => {
+        if (error) {
+            setShowError(true);
+
+            const timerId = setTimeout(() => {
+                setShowError(false);
+                setError("");  // Clear the error after the specified delay
+            }, 4000);
+
+            return () => clearTimeout(timerId);
+        }
+    }, [error]);
 
     function handleChange(event) {
         // console.log(event.target.name);
         setData({ ...data, [event.target.name]: event.target.value })
     }
+
     return (
         <>
-            {
-                error
-                &&
-                <div class="alert alert-danger" role="alert">
-                    {error}
-                </div>
-            }
-            <div className="home categorey-section">
-                <div className="container">
-                    <img src={home_image} alt="" className='home_img' style={{ height: "90%" }} />
-                </div>
-            </div>
-            <div className="user-form">
+            <div className="container blur"></div>
+            <div className="user-form" >
                 <form class="form" onSubmit={handleSubmit}>
                     <h1 style={{ textAlign: "center" }}>Login</h1>
+                    {showError && (
+                        <div className="alert alert-danger" role="alert">
+                            {error}
+                        </div>
+                    )}
                     <div class="flex-column">
                         <label>Email </label></div>
                     <div class="inputForm">

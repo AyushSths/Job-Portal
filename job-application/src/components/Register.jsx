@@ -1,18 +1,181 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import user from '../assets/images/user.png'
 import left_arrow from '../assets/images/left-arrow.png'
 import home_image from '../assets/images/home_image.jpg'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from 'axios'
+import ErrorMessage from './pages/ErrorMessage'
 
 function Register() {
     const throwIfNamespace = false
+    let navigate = useNavigate()
+    const [user, setUser] = useState("")
+    let [submittedOnce, setSubmittedOnce] = useState(false)
+    let form_data = {
+        uname: "",
+        email: "",
+        password: "",
+        role: "",
+        contact: "",
+        company: "",
+        education: ""
+    }
+    let [data, setData] = useState(form_data);
+    let [error, setError] = useState({
+        uname: "",
+        email: "",
+        password: "",
+        role: "",
+        contact: "",
+        company: "",
+        education: ""
+    })
+
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        setSubmittedOnce(true)
+        console.log("Form submit")
+        //Check form validation
+        let validForm = true
+        if (!data.uname || !data.email || !data.password || !data.role || !data.company || !data.education || !data.contact) {
+            validForm = false
+            setError((prev) => {
+                return {
+                    ...prev, uname: "Required*"
+                }
+            })
+            setError((prev) => {
+                return {
+                    ...prev, email: "Required*"
+                }
+            })
+            setError((prev) => {
+                return {
+                    ...prev, password: "Required*"
+                }
+            })
+            setError((prev) => {
+                return {
+                    ...prev, role: "Required*"
+                }
+            })
+            setError((prev) => {
+                return {
+                    ...prev, company: "Required*"
+                }
+            })
+            setError((prev) => {
+                return {
+                    ...prev, education: "Required*"
+                }
+            })
+            setError((prev) => {
+                return {
+                    ...prev, contact: "Required*"
+                }
+            })
+        }
+
+        // if error = {email:"E-mail already in use",password:""}
+        let error_values = Object.values(error)
+        error_values.forEach((err) => {
+            if (err) {
+                validForm = false
+            }
+        })
+
+        if (validForm) {
+            //api call
+            let url = "http://localhost:8000/api/users/register"
+            let data = {
+                "uname": event.target.uname.value,
+                "email": event.target.email.value,
+                "password": event.target.password.value,
+                "role": event.target.role.value,
+                "company": event.target.company.value,
+                "education": event.target.education.value,
+                "contact": event.target.contact.value
+            }
+            axios
+                .post(url, data)
+                .then(res => {
+                    console.log("From data", res);
+                    alert("Signed up")
+                    navigate("/Login")
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                    let errors = err.response.data.errors
+                    console.log("errors", errors);
+                    let temp = {}
+                    errors.forEach(el => {
+                        console.log("el", el);
+                        temp[el.param] = el.msg
+                    })
+                    console.log("error temp", temp);
+                    setError(temp)
+                })
+        }
+
+        console.log("errror data", error.password);
+
+    }
+
+    function handleChange(event) {
+        // const { name, value } = event.target;
+
+        // setData((prevData) => ({
+        //     ...prevData,
+        //     [name]: value,
+        // }));
+
+        // setError((prevError) => ({
+        //     ...prevError,
+        //     [name]: value ? "" : "Required*",
+        // }));
+
+        console.log(event.target.name);
+        setData({ ...data, [event.target.name]: event.target.value })
+        setError({ ...error, [event.target.name]: event.target.value ? "" : "Required" })
+    }
+
+    const [showError, setShowError] = useState(false);
+
+    // useEffect(() => {
+    //     if (error.uname || error.email || error.password || error.role || error.company || error.education || error.contact) {
+    //         setShowError(true);
+
+    //         const timerId = setTimeout(() => {
+    //             setShowError(false);
+    //             setError({
+    //                 uname: "",
+    //                 email: "",
+    //                 password: "",
+    //                 role: "",
+    //                 company: "",
+    //                 education: "",
+    //                 contact: ""
+    //             });
+    //         }, 4000);
+
+    //         return () => clearTimeout(timerId);
+    //     }
+    // }, [error]);
+
+
+
     return (
         <>
-            <div className="home categorey-section">
+            {/* <div className="home categorey-section">
                 <div className="container">
-                    <img src={home_image} alt="" className='home_img' style={{ height: "90%" }} />
+                    <img src={home_image} alt="" className='home_img' style={{ height: "90%", filter: "blur(4px)" }} />
                 </div>
-            </div>
+            </div> */}
+            <div className="container blur"></div>
             <div className="user-form">
                 <div className="register-section">
                     <div className="section-content">
@@ -21,48 +184,76 @@ function Register() {
                         <p className="section-btn" style={{ fontSize: "18px" }}>Already got an account? <Link class="btn-link" to="/login"><img src={left_arrow} alt="" className="r-arrow" /> Log in </Link></p>
                     </div>
                 </div>
-                <form class="form" style={{ borderRadius: "0px 20px 20px 0px" }}>
+                <form class="form" style={{ borderRadius: "0px 20px 20px 0px" }} onSubmit={handleSubmit}>
                     <h1 style={{ textAlign: "center" }}>Sign Up</h1>
                     <div class="flex-column">
                         <label>Username </label></div>
                     <div class="inputForm">
                         <img src={user} alt="" />
-                        <input placeholder="Enter username" class="input" type="text" />
+                        <input placeholder="Enter username" class="input" type="text" name="uname" value={data.uname} onChange={handleChange} />
+                        {
+                            submittedOnce && error.uname && <ErrorMessage msg={error.uname} />
+                        }
                     </div>
                     <div class="flex-column">
                         <label>Email </label></div>
                     <div class="inputForm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32" height="20"><g data-name="Layer 3" id="Layer_3"><path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
-                        <input placeholder="Enter Email" class="input" type="email" />
+                        <input placeholder="Enter Email" class="input" type="email" name='email' value={data.email} onChange={handleChange} style={{ display: "block" }} />
+                        {
+                            submittedOnce && error.email && <ErrorMessage msg={error.email} />
+                        }
                     </div>
 
                     <div class="flex-column">
                         <label>Password </label></div>
                     <div class="inputForm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
-                        <input placeholder="Enter Password" class="input" type="password" />
-                    </div>
-                    <div class="flex-column">
-                        <label>Confirm Password </label></div>
-                    <div class="inputForm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
-                        <input placeholder="Confirm Password" class="input" type="password" />
+                        <input placeholder="Enter Password" class="input" type="password" autocomplete="new-password" name='password' value={data.password} onChange={handleChange} />
+                        {
+                            submittedOnce && error.password && <ErrorMessage msg={error.password} />
+                        }
                     </div>
                     <div class="flex-column">
                         <label>Role </label></div>
                     <div class="inputForm">
                         <img src={user} alt="" />
-                        <select class="form-select form-input" aria-label="Default select example" name='role'>
+                        <select class="form-select form-input" aria-label="Default select example" name='role' value={data.role} onChange={handleChange} >
+
                             <option selected>Select role</option>
-                            <option value="buyer">Company</option>
-                            <option value="seller">Job-seeker</option>
+                            <option value="Company">Company</option>
+                            <option value="Job-seeker">Job-seeker</option>
                         </select>
+                        {
+                            submittedOnce && error.role && <ErrorMessage msg={error.role} />
+                        }
+                    </div>
+                    <div class="flex-column">
+                        <label>Education </label></div>
+                    <div class="inputForm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
+                        <input placeholder="Education" class="input" type="text" name='education' value={data.education} onChange={handleChange} />
+                        {
+                            submittedOnce && error.education && <ErrorMessage msg={error.education} />
+                        }
+                    </div>
+                    <div class="flex-column">
+                        <label>Company </label></div>
+                    <div class="inputForm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
+                        <input placeholder="Company" class="input" type="text" name='company' value={data.company} onChange={handleChange} />
+                        {
+                            submittedOnce && error.company && <ErrorMessage msg={error.company} />
+                        }
                     </div>
                     <div class="flex-column">
                         <label>Contact </label></div>
                     <div class="inputForm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
-                        <input placeholder="Contact no." class="input" type="text" />
+                        <input placeholder="Contact no." class="input" type="number" name='contact' value={data.contact} onChange={handleChange} />
+                        {
+                            submittedOnce && error.contact && <ErrorMessage msg={error.contact} />
+                        }
                     </div>
                     <button class="button-submit">Sign Up</button>
                     <p class="p line">Or With</p>

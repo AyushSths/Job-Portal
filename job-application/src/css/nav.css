@@ -1,6 +1,14 @@
+/* .navibar {
+    background-image: url('../assets/images/home_image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+} */
+
 .navbar {
     width: 100%;
     /* background-color: rgba(0, 0, 0, 0.5); */
+    z-index: 1;
 }
 
 .navbar .container-fluid {
@@ -78,7 +86,7 @@
 }
 
 .post .post-link:hover {
-    background-color: #146b37;
+    background-color: rgb(15, 108, 165);
     box-shadow: inset 0 0 0 0 #198745;
 }
 

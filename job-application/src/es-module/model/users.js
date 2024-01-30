@@ -5,11 +5,22 @@ const ObjectId = Schema.ObjectId;
 const registerSchema = new Schema({
     uname: {
         type: String,
+        maxlength: 25,
         required: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: async function (value) {
+                // console.log(value);
+                let exists = await mongoose.models.register.findOne({ email: value })
+                // console.log("email", exists)
+                if (exists)
+                    return false
+            },
+            message: "E-mail already in use"
+        }
     },
     password: {
         type: String,
@@ -24,31 +35,26 @@ const registerSchema = new Schema({
         required: true
     },
     contact: {
-        type: Number,
-        required: true
+        type: String,
+        required: true,
+        maxlength: 10,
+        minlength: 10
     },
     role: {
         type: String,
-        enum: ["Compnay", "Job-seeker"],
-        required: true
+        enum: ["company", "job-seeker"],
+        required: true,
+        set: function (value) {
+            return value.toLowerCase()
+        }
     },
 })
 
-const loginSchema = new Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-})
 
 const Register = mongoose.model("register", registerSchema)
-const Login = mongoose.model("login", loginSchema)
+
 
 module.exports = {
     Register,
-    Login
+
 }

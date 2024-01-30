@@ -8,39 +8,34 @@ import search from "../assets/images/search.png"
 import axios from "axios"
 // import Home from '../../../Aaach/src/component/Home'
 function Categorey({ category }) {
-    const [jobs, setJobs] = useState(null)
-    console.log(category);
-    const value = category
-    console.log("value", value);
-    function fetchData() {
-        axios.get("http://localhost:8000/api/jobs")
-            .then(res => {
-                console.log("data", res);
-                setJobs(res.data.data)
-            })
-            .catch(err => {
-                console.log("error", err);
-            })
+    const [jobs, setJobs] = useState(null);
+
+    async function fetchData() {
+        try {
+            const response = await axios.get('http://localhost:8000/api/jobs');
+            setJobs(response.data.data);
+        } catch (error) {
+            console.log('Error fetching data:', error);
+        }
     }
+
     useEffect(() => {
-        fetchData()
-    }, [])
+        if (!jobs) {
+            fetchData();
+        }
+    }, []);
     return (
         <>
-            <div className="home categorey-section">
-                <div className="container">
-                    <img src={home_image} alt="" className='home_img' style={{ height: "90%" }} />
-                    {/* <div class="dark-overlay"></div> */}
-                    <div className="info" style={{ top: "200px" }}>
-                        <p style={{ opacity: "0.6" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit" ><img src={search} alt="" /></button>
-                        </form>
-                    </div>
-                </div>
+            <div className="container blur"></div>
+            <div className="info" style={{ margin: "auto" }}>
+                <p style={{ opacity: "0.6" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
+                <form className="d-flex">
+                    <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
+                    <button className="btn btn-outline-success" type="submit" ><img src={search} alt="" /></button>
+                </form>
             </div>
             <div className="jobs job-cat">
+                {/* <div className="top-jobs"></div> */}
                 {
                     jobs?.map((item) => {
                         return (<>

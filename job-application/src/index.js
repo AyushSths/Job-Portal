@@ -7,6 +7,7 @@ import './css/users.css'
 import './css/footer.css'
 import './css/categorey.css'
 import './css/view.css'
+import './css/post.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'

@@ -3,6 +3,7 @@
     max-width: 50%;
     background-color: #ffff;
     border-radius: 0px 0px 10px 10px;
+    position: relative;
 }
 
 .view .banner-section {

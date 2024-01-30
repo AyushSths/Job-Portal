@@ -1,4 +1,6 @@
-.home .container {
+.home {}
+
+.container {
     box-sizing: border-box;
     max-width: 100%;
     margin: 0px;
@@ -6,9 +8,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../assets/images/home_image.jpg');
+    background-repeat: no-repeat;
+    /* Options: repeat-x, repeat-y, no-repeat, repeat */
+    background-size: cover;
+    height: 650px;
+    /* Options: auto, cover, contain */
+    background-position: center -100px;
+    position: relative;
+    top: -97px;
+    /* height: 100vh; */
 }
 
-.home .container .info {
+.info {
     max-width: 50%;
     color: white;
     position: relative;
@@ -21,20 +33,20 @@
     width: 100%;
     position: absolute;
     top: 0px;
-    z-index: -1;
+    z-index: 1;
     filter: blur(1px);
+    mask-image: linear-gradient(#000, rgba(0, 0, 0, 0));
+
 }
 
-.dark-overlay::before {
+.dark-overlay {
     content: "";
     position: absolute;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 600px;
     background-color: rgba(0, 0, 0, 0.6);
-    /* Adjust the opacity (last value) to make it darker or lighter */
-    z-index: -1;
 }
 
 .form-control {
@@ -72,7 +84,7 @@
     width: 60%;
     padding: 30px;
     position: relative;
-    top: 280px;
+    top: -40px;
     padding-bottom: 0px;
     border-radius: 5px;
     box-shadow: 5px 10px 8px #e4e4e4;
@@ -107,8 +119,6 @@
 .section-list {
     background-color: #ffffff;
     border-radius: 5px;
-    position: relative;
-    top: 320px;
     width: 60%;
     margin: auto;
     padding: 15px;
@@ -116,12 +126,11 @@
 }
 
 .tab-menu {
-    position: absolute;
+    position: relative;
     list-style: none;
-    right: 70px;
-    top: 10px;
-    /* z-index: 999;
-    font-size: 14px; */
+    right: 25px;
+    /* top: -106px; */
+    margin-left: auto;
 }
 
 .tab-menu .menu-item {
@@ -150,7 +159,7 @@
 
 .jobs {
     position: relative;
-    top: 5px;
+    top: -10px;
     /* width: 60%; */
     margin: auto;
     background-color: #ffffff;

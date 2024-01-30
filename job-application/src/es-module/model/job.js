@@ -9,6 +9,7 @@ const jobsSchema = new Schema({
     },
     categorey: {
         type: String,
+        required: true
         // enum: ["accounting Finance", "graphic designer", "informationTechnology", "education / training", "research / consultancy", "human resource", "medical / pharmacy"]
     },
     company: {
@@ -17,7 +18,10 @@ const jobsSchema = new Schema({
     jobLevel: {
         type: String,
         enum: ["fresher", "junior", "mid", "senior"],
-        required: true
+        required: true,
+        set: function (value) {
+            return value.toLowerCase()
+        }
     },
     description: {
         type: String
@@ -41,7 +45,10 @@ const jobsSchema = new Schema({
     type: {
         type: String,
         enum: ["top", "hot", "featured", "normal"],
-        required: true
+        required: true,
+        set: function (value) {
+            return value.toLowerCase()
+        }
     },
     createdAt: {
         type: Date,

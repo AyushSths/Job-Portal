@@ -85,8 +85,8 @@ function Home({ setCategory }) {
         <>
             <div className="home">
                 <div className="container">
-                    <img src={home_image} alt="" className='home_img' />
-                    <div class="dark-overlay"></div>
+                    <div className="dark-overlay"></div>
+                    {/* <img src={home_image} alt="" className='home_img' /> */}
                     <div className="info">
                         <h1 style={{ display: "block", textAlign: "center", fontSize: "60px" }}>Find your dream job!</h1>
                         <p style={{ fontSize: "30px" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
@@ -172,7 +172,7 @@ function Home({ setCategory }) {
                     </div>
                 </div>
                 <div className="section-list">
-                    <div className="section-titles">
+                    <div className="section-titles" style={{ display: "flex", justifyContent: "space-between" }}>
                         <h4>Latest Jobs</h4>
                         <ul className="tab-menu" style={{ display: "flex" }}>
                             <li className="menu-item"><a className='item-link' href="#top-jobs" onClick={() => handleJobTpye('top')}>Top jobs</a></li>
@@ -186,6 +186,7 @@ function Home({ setCategory }) {
                         {showTopJobs && <TopJobs />}
                         {showFeaturedJobs && <FeaturedJobs />}
                         {showNormalJobs && <NormalJobs />} */}
+                        {/* <div className="top-jobs"></div> */}
                         {
                             jobs?.map((item) => {
                                 return (<>
