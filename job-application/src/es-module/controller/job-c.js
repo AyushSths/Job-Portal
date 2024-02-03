@@ -23,9 +23,16 @@ const fetchjobs_id = async (req, res, next) => {
 
 const store = async (req, res, next) => {
     try {
-        const { name, categorey, company, jobLevel, description, noOfVacancy, location, offeredSalary, deadline, type, createdAt, createdBy, image } = req.body;
-        if (!name || !categorey || !company || !jobLevel || !noOfVacancy || !offeredSalary || !deadline || !type || !createdAt || !createdBy) {
-            return res.status(400).json({ error: 'Missing required fields in the request body' });
+        const { name, categorey, company, jobLevel, description, noOfVacancy, location, offeredSalary, deadline, type, createdAt, image } = req.body;
+        // if (!name || !categorey || !company || !jobLevel || !noOfVacancy || !offeredSalary || !deadline || !type || !createdAt) {
+        //     return res.status(400).json({ error: 'Missing required fields in the request body' });
+        // }
+        const requiredFields = ['name', 'categorey', 'company', 'jobLevel', 'description', 'noOfVacancy', 'location', 'offeredSalary', 'deadline', 'type', 'createdAt'];
+
+        const missingFields = requiredFields.filter(field => !req.body[field]);
+
+        if (missingFields.length > 0) {
+            return res.status(400).json({ error: `Missing required fields: ${missingFields.join(', ')}` });
         }
         const jobItem = new Job({
             name: name,
@@ -39,8 +46,9 @@ const store = async (req, res, next) => {
             deadline: deadline,
             type: type,
             createdAt: createdAt,
-            createdBy: createdBy,
             image: image
+            // createdBy: createdBy,
+            // image: req.files ? req.files.map(file => `/uploads/${file.filename}`) : []
         });
 
         // Check if the job already exists in the chart

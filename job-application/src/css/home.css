@@ -219,7 +219,7 @@
 }
 
 .top-jobs {
-    animation: bounce4 1s;
+    animation: slideIn 0.5s ease-in-out forwards;
 }
 
 .items {

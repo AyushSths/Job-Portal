@@ -24,7 +24,8 @@ const jobsSchema = new Schema({
         }
     },
     description: {
-        type: String
+        type: String,
+        required: true
     },
     noOfVacancy: {
         type: Number,
@@ -54,10 +55,10 @@ const jobsSchema = new Schema({
         type: Date,
         required: true
     },
-    createdBy: {
-        type: String,
-        required: true
-    },
+    // createdBy: {
+    //     type: String,
+    //     required: true
+    // },
     image: {
         type: String
     }

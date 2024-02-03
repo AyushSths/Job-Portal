@@ -212,7 +212,7 @@ function Home({ setCategory }) {
                                                                 <span className="time"><img src={clock} alt="" /> Full Time</span>
                                                             </div>
                                                             <div className="wraper price-wrap">
-                                                                <span><img src={money} alt="" /> Rs.{item.offeredSalary}</span>
+                                                                <span><img src={money} alt="" /> {item.offeredSalary == "Negotiable" || item.offeredSalary == "negotiable" ? item.offeredSalary : `Rs.${item.offeredSalary}`}</span>
                                                             </div>
                                                         </div>
                                                     </div>

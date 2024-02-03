@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
@@ -9,6 +10,7 @@ import ErrorMessage from './ErrorMessage'
 function PostJob() {
 
     const { register, handleSubmit, control, formState: { errors }, } = useForm();
+    const [value, setValue] = useState([])
     const validateSalary = (value) => {
         if (!value || value.toLowerCase() === 'negotiable' || !isNaN(parseFloat(value))) {
             return true; // Valid
@@ -20,21 +22,37 @@ function PostJob() {
         try {
             console.log('Form Data:', event);
             let url = "http://localhost:8000/api/jobs/post"
-            let data = {
-                "name": event.name,
-                "categorey": event.categorey,
-                "company": event.company,
-                "jobLevel": event.jobLevel,
-                "description": event.description,
-                "noOfVacancy": event.noOfVacancy,
-                "location": event.location,
-                "offeredSalary": event.offeredSalary,
-                "deadline": event.deadline,
-                "type": event.type,
-                "createdAt": event.createdAt,
-                "image": event.image[0]
+            const formData = new FormData();
+
+            // Append image files to the FormData object
+            if (event.image && event.image.length > 0) {
+                // If 'event.image' is not an array, convert it to an array
+                const imageFiles = Array.isArray(event.image) ? event.image : [event.image];
+
+                imageFiles.forEach((file) => {
+                    formData.append('image', file);
+                });
             }
-            await axios.post(url, data)
+
+            // Append other fields to the FormData object
+            formData.append('name', event.name);
+            formData.append('categorey', event.categorey);
+            formData.append('company', event.company);
+            formData.append('description', event.description);
+            formData.append("offeredSalary", event.offeredSalary);
+            formData.append("location", event.location);
+            formData.append("type", event.type)
+            formData.append("jobLevel,", event.jobLevel);
+            formData.append("noOfVacancy", event.noOfVacancy);
+            formData.append("createdAt", event.createdAt);
+            formData.append("deadline", event.deadline);
+            // formData.append("image", event.image);
+
+            for (var pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+
+            await axios.post(url, formData)
                 .then(res => {
                     console.log(res);
                     alert(res.data?.message)
@@ -240,24 +258,34 @@ function PostJob() {
                             <tr>
                                 <td>Image <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <input {...register("image", {
-                                        required: "This field is required*"
-                                    })} type="file" multiple class="form-control" name="image" />
+                                    <input
+                                        {...register("image", {
+                                            required: "This field is required*",
+                                        })}
+                                        type="file"
+                                        multiple
+                                        class="form-control"
+                                        name="image"
+                                        accept="image/*"
+                                        onChange={(e) => {
+                                            setValue("image", e.target.files[0]);
+                                        }}
+                                    />
                                     <ErrorMessage msg={errors.image?.message} />
                                     {/* {
-                        product?.images.map(img => {
+                                        formData.image?.map(img => {
 
-                            let img_src = "";
+                                            let img_src = "";
 
-                            if (typeof (img) == "string") {
-                                img_src = img;
-                            } else {
-                                img_src = URL.createObjectURL(img)
-                            }
+                                            if (typeof (img) == "string") {
+                                                img_src = img;
+                                            } else {
+                                                img_src = URL.createObjectURL(img)
+                                            }
 
-                            return <img height={100} width={100} src={img_src} />
-                        })
-                    } */}
+                                            return <img height={100} width={100} src={img_src} />
+                                        })
+                                    } */}
                                 </td>
                             </tr>
                         </table>

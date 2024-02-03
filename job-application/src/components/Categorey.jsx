@@ -28,6 +28,7 @@ function Categorey({ category }) {
         <>
             <div className="container blur"></div>
             <div className="info" style={{ margin: "auto" }}>
+                <p style={{ opacity: "0.8", marginBottom: "30px", marginTop: "-20px" }}> <Link to="/" className="link" style={{ color: "white" }}>Home</Link>  / Category / {category}</p>
                 <p style={{ opacity: "0.6" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
                 <form className="d-flex">
                     <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
@@ -61,7 +62,7 @@ function Categorey({ category }) {
                                                         <span className="time"><img src={clock} alt="" /> Full Time</span>
                                                     </div>
                                                     <div className="wraper price-wrap">
-                                                        <span><img src={money} alt="" /> Rs.{item.offeredSalary}</span>
+                                                        <span><img src={money} alt="" /> {item.offeredSalary == "Negotiable" || item.offeredSalary == "negotiable" ? item.offeredSalary : `Rs.${item.offeredSalary}`}</span>
                                                     </div>
                                                 </div>
                                             </div>

@@ -27,7 +27,6 @@ function View() {
     return (
         <>
             <div className="container blur"></div>
-
             <div className="view">
                 <div className="banner-section"  >
                     <div className="banner-title" style={{ display: "flex" }}>
@@ -73,7 +72,7 @@ function View() {
                             <tr>
                                 <th style={{ width: "33%" }}>Offered Salary</th>
                                 <td style={{ width: "3%" }}>:</td>
-                                <td style={{ width: "64%" }}>Rs. {jobs?.offeredSalary}</td>
+                                <td style={{ width: "64%" }}> {jobs?.offeredSalary == "Negotiable" || jobs?.offeredSalary == "negotiable" ? jobs?.offeredSalary : `Rs.${jobs?.offeredSalary}`}</td>
                             </tr>
                             <tr>
                                 <th style={{ width: "33%" }}>Apply Before(Deadline)</th>
