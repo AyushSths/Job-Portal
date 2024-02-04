@@ -60,7 +60,7 @@ const jobsSchema = new Schema({
     //     required: true
     // },
     image: {
-        type: String
+        type: [String]
     }
 })
 

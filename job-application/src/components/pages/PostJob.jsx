@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
@@ -9,6 +10,32 @@ import ErrorMessage from './ErrorMessage'
 function PostJob() {
 
     const { register, handleSubmit, control, formState: { errors }, } = useForm();
+    const [jobs, setJobs] = useState({
+        name: "",
+        categorey: "",
+        company: "",
+        jobLevel: "",
+        description: "",
+        noOfVacancy: "",
+        location: "",
+        offeredSalary: "",
+        deadline: "",
+        type: "",
+        createdAt: "",
+        image: [],
+    })
+    function handleChange(e) {
+        if (e.target.name == "image") {
+            setJobs({
+                ...jobs, image: [...jobs.image, ...e.target.files]
+            })
+        } else {
+            setJobs({
+                ...jobs, [e.target.name]: e.target.value
+            })
+        }
+
+    }
     const validateSalary = (value) => {
         if (!value || value.toLowerCase() === 'negotiable' || !isNaN(parseFloat(value))) {
             return true; // Valid
@@ -16,23 +43,26 @@ function PostJob() {
         return 'Salary should be either a number or negotiable';
     }
     const onSubmit = async (event) => {
-
+        let temp = [...jobs.image]
         try {
             console.log('Form Data:', event);
             let url = "http://localhost:8000/api/jobs/post"
             let data = {
-                "name": event.name,
-                "categorey": event.categorey,
-                "company": event.company,
-                "jobLevel": event.jobLevel,
-                "description": event.description,
-                "noOfVacancy": event.noOfVacancy,
-                "location": event.location,
-                "offeredSalary": event.offeredSalary,
-                "deadline": event.deadline,
-                "type": event.type,
-                "createdAt": event.createdAt,
-                "image": event.image[0]
+                "name": jobs.name,
+                "categorey": jobs.categorey,
+                "company": jobs.company,
+                "jobLevel": jobs.jobLevel,
+                "description": jobs.description,
+                "noOfVacancy": jobs.noOfVacancy,
+                "location": jobs.location,
+                "offeredSalary": jobs.offeredSalary,
+                "deadline": jobs.deadline,
+                "type": jobs.type,
+                "createdAt": jobs.createdAt,
+                "image": jobs?.image.map(img => {
+                    // Check if it's already a string (URL)
+                    return typeof img === "string" ? img : URL.createObjectURL(img);
+                })
             }
             await axios.post(url, data)
                 .then(res => {
@@ -70,7 +100,7 @@ function PostJob() {
                                             value: 50,
                                             message: "Max length is 50"
                                         }
-                                    })} type="text" placeholder='Company name' />
+                                    })} type="text" placeholder='Company name' name='company' value={jobs?.company} onChange={handleChange} />
                                     <ErrorMessage msg={errors.company?.message} />
                                 </td>
                             </tr>
@@ -82,7 +112,7 @@ function PostJob() {
                                             value: 30,
                                             message: "Max length is 30"
                                         }
-                                    })} type="text" placeholder="ex.Web Developer" />
+                                    })} type="text" placeholder="ex.Web Developer" name='name' value={jobs?.name} onChange={handleChange} />
                                     <ErrorMessage msg={errors.title?.message} />
                                 </td>
                             </tr>
@@ -91,7 +121,7 @@ function PostJob() {
                                 <td>
                                     <select {...register("categorey", {
                                         required: "This field is required*"
-                                    })} name="categorey" id="">
+                                    })} id="" name='categorey' value={jobs?.categorey} onChange={handleChange}>
                                         <option value="" disabled selected >Select Category</option>
                                         <option value="It">Information technology</option>
                                         <option value="Accounting">Accounting</option>
@@ -104,7 +134,7 @@ function PostJob() {
                                     <ErrorMessage msg={errors.categorey?.message} />
                                 </td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <td>Job Type <span style={{ color: "red" }}>*</span></td>
                                 <td style={{ display: "flex" }}>
                                     <div className="form-check">
@@ -115,7 +145,7 @@ function PostJob() {
                                                 name="type"
                                                 render={({ field }) => (
                                                     <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value='top' />
+                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == 'top'} onChange={handleChange} />
                                                 )} />
                                         </label>
                                     </div>
@@ -127,7 +157,7 @@ function PostJob() {
                                                 name="type"
                                                 render={({ field }) => (
                                                     <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value='hot' />
+                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == "hot"} onChange={handleChange} />
                                                 )} />
                                         </label>
                                     </div>
@@ -139,7 +169,7 @@ function PostJob() {
                                                 name="type"
                                                 render={({ field }) => (
                                                     <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value='featured' />
+                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == "featured"} onChange={handleChange} />
                                                 )} />
                                         </label>
                                     </div>
@@ -151,25 +181,40 @@ function PostJob() {
                                                 name="type"
                                                 render={({ field }) => (
                                                     <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value='normal' />
+                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == "normal"} onChange={handleChange} />
                                                 )} />
                                         </label>
                                     </div>
 
 
                                 </td>
+                            </tr> */}
+                            <tr>
+                                <td>Job Type <span style={{ color: "red" }}>*</span></td>
+                                <td>
+                                    <select name="type" id="" {...register("type", {
+                                        required: "This field is required*"
+                                    })} value={jobs?.type} onChange={handleChange} >
+                                        <option value="0" style={{ opacity: "0.8" }}>Select type...</option>
+                                        <option value="top" >Top</option>
+                                        <option value="hot" >Hot</option>
+                                        <option value="featured" >Featured</option>
+                                        <option value="normal" >Normal</option>
+                                    </select>
+                                    <ErrorMessage msg={errors.jobLevel?.message} />
+                                </td>
                             </tr>
                             <tr>
                                 <td>Job Level <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <select name="level" id="" {...register("jobLevel", {
+                                    <select name="jobLevel" id="" {...register("jobLevel", {
                                         required: "This field is required*"
-                                    })}>
+                                    })} value={jobs?.jobLevel} onChange={handleChange} >
                                         <option value="0">Select Level...</option>
-                                        <option value="fresher">Fresher</option>
-                                        <option value="junior">Junior</option>
-                                        <option value="mid">Mid</option>
-                                        <option value="senior">Senior</option>
+                                        <option value="fresher" >Fresher</option>
+                                        <option value="junior" >Junior</option>
+                                        <option value="mid" >Mid</option>
+                                        <option value="senior" >Senior</option>
                                     </select>
                                     <ErrorMessage msg={errors.jobLevel?.message} />
                                 </td>
@@ -177,14 +222,14 @@ function PostJob() {
                             <tr>
                                 <td>Location <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <select name="District" id="" {...register("location", {
+                                    <select name="location" id="" {...register("location", {
                                         required: "This field is required*"
-                                    })}>
+                                    })} value={jobs?.location} onChange={handleChange} >
                                         <option value="0">Select District...</option>
-                                        <option value="Kathmandu">Kathmandu</option>
-                                        <option value="Lalitpur">Lalitpur</option>
-                                        <option value="Bhaktapur">Bhaktapur</option>
-                                        <option value="Kavre">Kavre</option>
+                                        <option value="Kathmandu" >Kathmandu</option>
+                                        <option value="Lalitpur" >Lalitpur</option>
+                                        <option value="Bhaktapur" >Bhaktapur</option>
+                                        <option value="Kavre" >Kavre</option>
                                     </select>
                                     <ErrorMessage msg={errors.location?.message} />
                                 </td>
@@ -195,16 +240,16 @@ function PostJob() {
                                     <input type="text" placeholder='Salary' {...register("offeredSalary", {
                                         required: "This field is required*",
                                         validate: validateSalary
-                                    })} />
+                                    })} name="offeredSalary" value={jobs?.offeredSalary} onChange={handleChange} />
                                     <ErrorMessage msg={errors.offeredSalary?.message} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>No. of Vacancy <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <input type="number" name="" id="" placeholder='Vacancy no.' {...register("noOfVacancy", {
+                                    <input type="number" name="noOfVacancy" id="" placeholder='Vacancy no.' {...register("noOfVacancy", {
                                         required: "This field is required*"
-                                    })} />
+                                    })} value={jobs?.noOfVacancy} onChange={handleChange} />
                                     <ErrorMessage msg={errors.noOfVacancy?.message} />
                                 </td>
                             </tr>
@@ -216,24 +261,25 @@ function PostJob() {
                                             value: 300,
                                             message: "Max length is 300"
                                         }
-                                    })} name="description" id="" cols="30" rows="10" style={{ height: "150px" }} placeholder="Job description" />
+                                    })} name="description" id="" cols="30" rows="10" style={{ height: "150px" }} placeholder="Job description"
+                                        value={jobs?.description} onChange={handleChange} />
                                     <ErrorMessage msg={errors.description?.message} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Applicant Start <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <input type='date' name="appStartDate" class="form-control" placeholder='Start date' {...register("createdAt", {
+                                    <input type='date' name="createdAt" class="form-control" placeholder='Start date' {...register("createdAt", {
                                         required: "This field is required*"
-                                    })} /><br />
+                                    })} value={jobs?.createdAt} onChange={handleChange} /><br />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Applicant Deadline <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <input type='date' name="appStartDate" class="form-control" placeholder='Deadline' {...register("deadline", {
+                                    <input type='date' name="deadline" class="form-control" placeholder='Deadline' {...register("deadline", {
                                         required: "This field is required*"
-                                    })} /><br />
+                                    })} value={jobs?.deadline} onChange={handleChange} /><br />
 
                                 </td>
                             </tr>
@@ -242,22 +288,22 @@ function PostJob() {
                                 <td>
                                     <input {...register("image", {
                                         required: "This field is required*"
-                                    })} type="file" multiple class="form-control" name="image" />
+                                    })} type="file" multiple class="form-control" name="image" onChange={handleChange} />
                                     <ErrorMessage msg={errors.image?.message} />
-                                    {/* {
-                        product?.images.map(img => {
+                                    {
+                                        jobs?.image.map(img => {
 
-                            let img_src = "";
+                                            let img_src = "";
 
-                            if (typeof (img) == "string") {
-                                img_src = img;
-                            } else {
-                                img_src = URL.createObjectURL(img)
-                            }
+                                            if (typeof (img) == "string") {
+                                                img_src = img;
+                                            } else {
+                                                img_src = URL.createObjectURL(img)
+                                            }
 
-                            return <img height={100} width={100} src={img_src} />
-                        })
-                    } */}
+                                            return <img height={100} width={100} src={img_src} />
+                                        })
+                                    }
                                 </td>
                             </tr>
                         </table>
