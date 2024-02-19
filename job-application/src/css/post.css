@@ -5,9 +5,13 @@
     background-color: #ffff;
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 5px 10px 8px #a8a6a6;
+    position: relative;
 }
 
 .form-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -49,6 +53,8 @@
     cursor: pointer;
     border-radius: 5px;
     text-decoration: none;
+    -webkit-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
     transition: 0.4s ease;
 }
 

@@ -1,12 +1,26 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .home {}
 
 .container {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     max-width: 100%;
     margin: 0px;
     padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     background-image: url('../assets/images/home_image.jpg');
     background-repeat: no-repeat;
@@ -34,7 +48,11 @@
     position: absolute;
     top: 0px;
     z-index: 1;
+    -webkit-filter: blur(1px);
     filter: blur(1px);
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(rgba(0, 0, 0, 0)));
+    -webkit-mask-image: linear-gradient(#000, rgba(0, 0, 0, 0));
+    mask-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(rgba(0, 0, 0, 0)));
     mask-image: linear-gradient(#000, rgba(0, 0, 0, 0));
 
 }
@@ -63,11 +81,13 @@
     /* right: 13px; */
     top: -11px;
     border: none;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
     transition: 0.3s ease;
 }
 
 .info .btn-outline-success:hover {
-    background-color: #166a37;
+    background-color: rgb(15, 108, 165);
     border: none;
 }
 
@@ -77,9 +97,14 @@
 
 .categorey {
     background: #ffffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: auto;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 60%;
     padding: 30px;
@@ -87,6 +112,7 @@
     top: -40px;
     padding-bottom: 0px;
     border-radius: 5px;
+    -webkit-box-shadow: 5px 10px 8px #e4e4e4;
     box-shadow: 5px 10px 8px #e4e4e4;
 
 }
@@ -96,6 +122,8 @@
     margin-right: 40px;
     cursor: pointer;
     padding: 10px;
+    -webkit-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
     transition: 0.5s ease;
     border-radius: 5px;
 }
@@ -106,12 +134,17 @@
 
 .categorey .cat_list:hover {
     background-color: #f0f0f0;
+    -webkit-box-shadow: 5px 10px 8px #e4e4e4;
     box-shadow: 5px 10px 8px #e4e4e4;
     color: #198745;
 }
 
 .categorey .cat_list .cat_img {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     /* width: 100px; */
 }
@@ -122,6 +155,7 @@
     width: 60%;
     margin: auto;
     padding: 15px;
+    -webkit-box-shadow: 5px 10px 8px #e4e4e4;
     box-shadow: 5px 10px 8px #e4e4e4;
 }
 
@@ -137,6 +171,8 @@
     border-radius: 5px 5px 0px 0px;
     padding: 8px;
     border-bottom: none;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
     transition: 0.3s ease;
 }
 
@@ -148,6 +184,8 @@
     font-size: 14px;
     text-decoration: none;
     color: black;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
     transition: 0.3s ease;
 }
 
@@ -194,22 +232,28 @@
     font-size: 16px;
     letter-spacing: 1px;
     cursor: pointer;
+    -webkit-transition: ease-out 0.5s;
+    -o-transition: ease-out 0.5s;
     transition: ease-out 0.5s;
     border: none;
     border-radius: 10px;
     text-decoration: none;
     color: white;
+    -webkit-box-shadow: inset 0 -100px 0 0 #198745;
     box-shadow: inset 0 -100px 0 0 #198745;
 }
 
 .apply-btn .app-link button:hover {
     color: black;
     background: transparent;
+    -webkit-box-shadow: inset 0 0 0 0 #198745;
     box-shadow: inset 0 0 0 0 #198745;
     border: 2px solid #198745;
 }
 
 .apply-btn .app-link button:active {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
     transform: scale(0.9);
 }
 
@@ -219,56 +263,42 @@
 }
 
 .top-jobs {
+    -webkit-animation: slideIn 0.5s ease-in-out forwards;
     animation: slideIn 0.5s ease-in-out forwards;
 }
 
 .items {
+    -webkit-animation: bounce 1s;
     animation: bounce 1s;
 }
 
 .logo {
+    -webkit-animation: bounce2 1s;
     animation: bounce2 1s;
+    animation-direction: alternate;
+
 }
 
 .info h1 {
+    -webkit-animation: bounce1 1s;
     animation: bounce1 1s;
+    animation-direction: alternate;
+
 }
 
 .info p {
+    -webkit-animation: bounce 1.2s;
     animation: bounce 1.2s;
 }
 
 .info .d-flex {
+    -webkit-animation: bounce 1.4s;
     animation: bounce 1.4s
 }
 
 .categorey {
+    -webkit-animation: bounce1 1.4s;
     animation: bounce1 1.4s;
+    animation-direction: alternate;
+
 }
-
-/* @keyframes bounce {
-    0% {
-        transform: translateZ(250px);
-        opacity: 0;
-    }
-} */
-
-/* @keyframes bounce1 {
-    0% {
-        opacity: 0;
-    }
-
-    40% {
-        transform: translateY(-100px);
-    }
-}
-
-@keyframes bounce2 {
-    0% {
-        opacity: 0;
-    }
-
-    70% {
-        transform: translateY(-20px);
-    }
-} */

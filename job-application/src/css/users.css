@@ -1,10 +1,19 @@
 .user-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
 .form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 15px;
     background-color: #f0f0f0;
@@ -14,9 +23,26 @@
     border-radius: 20px 0 0px 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* margin: auto; */
+    -ms-flex-line-pack: center;
     align-content: center;
     position: relative;
     top: 100px;
+}
+
+::-webkit-input-placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+::-moz-placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:-ms-input-placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+::-ms-input-placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 ::placeholder {
@@ -24,6 +50,7 @@
 }
 
 .form button {
+    -ms-flex-item-align: end;
     align-self: flex-end;
 }
 
@@ -36,10 +63,16 @@
     border: 1.5px solid #dad9d9;
     border-radius: 10px;
     height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     padding-left: 10px;
     margin-top: 11px;
+    -webkit-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
 }
 
@@ -62,10 +95,19 @@
 }
 
 .flex-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 10px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
@@ -94,6 +136,8 @@
     height: 50px;
     width: 100%;
     cursor: pointer;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
     transition: 0.3s ease;
 }
 
@@ -114,14 +158,22 @@
     width: 100%;
     height: 50px;
     border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-weight: 500;
     gap: 10px;
     border: 1px solid #ededef;
     background-color: white;
     cursor: pointer;
+    -webkit-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
 }
 
@@ -135,8 +187,14 @@
 }
 
 .form-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     position: relative;
     top: 101px;
@@ -149,8 +207,14 @@
 }
 
 .register-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     position: relative;
     top: 100px;
@@ -174,6 +238,8 @@
 .section-btn,
 .section-btn .btn-link {
     color: #ededef;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
     transition: 0.3s ease;
     text-decoration: none;
 }
@@ -187,6 +253,8 @@
 }
 
 .r-arrow {
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
     transition: 0.3s ease;
     width: 16px;
 }
@@ -204,6 +272,7 @@
 
 .form h1,
 .form .button-submit {
+    -webkit-animation: bounce2 1s;
     animation: bounce2 1s;
 }
 
@@ -220,59 +289,80 @@
 
 */
 .form .flex-row {
+    -webkit-animation: bounce 1.2s;
     animation: bounce 1.2s;
 }
 
 .section-content h1 {
+    -webkit-animation: bounce2 1s;
     animation: bounce2 1s;
 }
 
 .section-content p {
+    -webkit-animation: bounce 1s;
     animation: bounce 1s
 }
 
 .section-content .section-btn {
+    -webkit-animation: bounce1 1s;
     animation: bounce1 1s
 }
 
 .uname-input {
+    -webkit-animation: bounce 0.2s ease-out 0s 1 normal forwards;
     animation: bounce 0.2s ease-out 0s 1 normal forwards;
 }
 
 .email-input {
+    -webkit-animation: bounce 0.5s ease-out 0s 1 normal forwards;
     animation: bounce 0.5s ease-out 0s 1 normal forwards;
 }
 
 .pwd-input {
+    -webkit-animation: bounce 0.7s ease-out 0s 1 normal forwards;
     animation: bounce 0.7s ease-out 0s 1 normal forwards;
 }
 
 .role-input {
+    -webkit-animation: bounce 0.8s ease-out 0s 1 normal forwards;
     animation: bounce 0.8s ease-out 0s 1 normal forwards;
 }
 
 .edu-input {
+    -webkit-animation: bounce 0.9s ease-out 0s 1 normal forwards;
     animation: bounce 0.9s ease-out 0s 1 normal forwards;
 }
 
 .com-input {
+    -webkit-animation: bounce 1s ease-out 0s 1 normal forwards;
     animation: bounce 1s ease-out 0s 1 normal forwards;
 }
 
 .con-input {
+    -webkit-animation: bounce 1.1s ease-out 0s 1 normal forwards;
     animation: bounce 1.1s ease-out 0s 1 normal forwards;
 }
 
-@keyframes bounce {
+@-webkit-keyframes bounce {
     0% {
+        -webkit-transform: translateY(-250px);
         transform: translateY(-250px);
         opacity: 0;
     }
 }
 
-@keyframes bounce1 {
+@keyframes bounce {
+    0% {
+        -webkit-transform: translateY(-250px);
+        transform: translateY(-250px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes bounce1 {
     0% {
         opacity: 0;
+        -webkit-transform: translateY(250px);
         transform: translateY(250px);
 
     }
@@ -281,30 +371,95 @@
     } */
 }
 
+@keyframes bounce1 {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(250px);
+        transform: translateY(250px);
+
+    }
+
+    /* 40% {
+    } */
+}
+
+@-webkit-keyframes bounce2 {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+}
+
 @keyframes bounce2 {
     0% {
         opacity: 0;
     }
 
     70% {
+        -webkit-transform: translateY(-20px);
         transform: translateY(-20px);
+    }
+}
+
+@-webkit-keyframes bounce3 {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-10%);
+        transform: translateY(-10%)
+    }
+}
+
+@keyframes bounce3 {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-10%);
+        transform: translateY(-10%)
+    }
+}
+
+@-webkit-keyframes bounce4 {
+    0% {
+        -webkit-transform: translateX(250px);
+        transform: translateX(250px);
+        opacity: 0;
     }
 }
 
 @keyframes bounce4 {
     0% {
+        -webkit-transform: translateX(250px);
         transform: translateX(250px);
         opacity: 0;
     }
 }
 
-@keyframes slideIn {
+@-webkit-keyframes slideIn {
     0% {
+        -webkit-transform: translateX(250px);
         transform: translateX(250px);
         opacity: 0;
     }
 
     100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        -webkit-transform: translateX(250px);
+        transform: translateX(250px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
         transform: translateX(0);
         opacity: 1;
     }

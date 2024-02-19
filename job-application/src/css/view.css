@@ -4,10 +4,15 @@
     background-color: #ffff;
     border-radius: 0px 0px 10px 10px;
     position: relative;
+    box-shadow: 5px 10px 8px #a8a6a6;
 }
 
 .view .banner-section {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -20,7 +25,9 @@
 
 .view .banner-section .banner-title .title {
     margin-left: 20px;
+    display: -ms-grid;
     display: grid;
+    -ms-flex-line-pack: end;
     align-content: end;
 }
 
@@ -41,6 +48,8 @@
     width: 27px;
     height: 27px;
     display: inline-block;
+    -webkit-transition: 0.5s ease-out;
+    -o-transition: 0.5s ease-out;
     transition: 0.5s ease-out;
 }
 
@@ -67,5 +76,4 @@
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
-
 }

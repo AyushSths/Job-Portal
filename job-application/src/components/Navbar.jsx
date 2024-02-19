@@ -1,18 +1,62 @@
 import React from 'react'
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import user from "../assets/images/user-2.png"
+import user_img from "../assets/images/user-2.png"
+import { logout } from './redux/slice/userSlice';
+import profile from "../assets/images/profile.png"
+import logout_img from "../assets/images/logout.png"
+import accounting from "../assets/images/accounting.png"
+import it from "../assets/images/information-technology.png"
+import education from "../assets/images/education.png"
+import engineer from "../assets/images/engineer.png"
+import management from "../assets/images/management.png"
+import medical from "../assets/images/medical-symbol.png"
+import music from "../assets/images/music.png"
+import research from "../assets/images/research.png"
+import { useState } from 'react';
+import axios from 'axios';
 
-function Navbar({ setCondition }) {
+function Navbar({ setCondition, setCategory }) {
+    const user = useSelector((redux_state) => redux_state.user?.value)
+    // const user_s = useSelector((redux_store) => {
+    //     return redux_store.user.value
+    // })
+    const dispatch = useDispatch()
+    const handleLogout = () => {
+        // localStorage.removeItem("access_token")
+        dispatch(logout())
+    }
+
+
+    const [jobs, setJobs] = useState(null)
+
+    function fetchData() {
+        axios.get("http://localhost:8000/api/jobs")
+            .then(res => {
+                console.log("data", res);
+                setJobs(res.data.data)
+            })
+            .catch(err => {
+                console.log("error", err);
+            })
+    }
+
+
     const location = useLocation();
-
     // Check if the current route is not the home route ("/")
     const isNotHome = location.pathname !== '/';
 
     // Set the condition in the App component based on the current route
     useEffect(() => {
+        fetchData()
         setCondition(isNotHome);
     }, [setCondition, isNotHome]);
+
+    const handleCategoryClick = (category) => {
+        console.log("Clicked category:", category);
+        setCategory(category);
+    };
     return (
         <>
             <div className="navibar">
@@ -30,11 +74,19 @@ function Navbar({ setCondition }) {
                                         <span className='line'></span>
                                     </NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink className="nav-link" to="/about">Blog
-                                        <span className='line'></span>
-                                    </NavLink>
-                                </li>
+                                {
+                                    user?.role === "job-seeker" ?
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/apply">Applied
+                                                <span className='line'></span>
+                                            </NavLink>
+                                        </li> : user?.role === "company" ?
+                                            <li className="nav-item">
+                                                <NavLink className="nav-link" to="/posted">Posted
+                                                    <span className='line'></span>
+                                                </NavLink>
+                                            </li> : null
+                                }
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/about">About
                                         <span className='line'></span>
@@ -47,25 +99,86 @@ function Navbar({ setCondition }) {
                                 </li>
                                 <li className="nav-item dropdown">
                                     <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Services
+                                        Browse Jobs
                                     </NavLink>
                                     {/* <span className='line'></span> */}
-                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><NavLink className="dropdown-item" to="#">Action</NavLink></li>
-                                        <li><NavLink className="dropdown-item" to="#">Another action</NavLink></li>
-                                        <li><hr className="dropdown-divider" /></li>
-                                        <li><NavLink className="dropdown-item" to="#">Something else here</NavLink></li>
-                                    </ul>
+                                    {/* <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><Link className="dropdown-item" to="#">Action</Link></li>
+                                        <li><Link className="dropdown-item" to="#">Another action</Link></li>
+
+                                    </ul> */}
+                                    <div className="dropdown-menu nav-categorey" aria-labelledby="navbarDropdown">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Accounting')}><img src={accounting} alt="" /> Accounting / Finance ({jobs?.filter(job => job?.categorey === "Accounting").length})</Link></td>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('It')}><img src={it} alt="" /> Information technology ({jobs?.filter(job => job?.categorey === "It").length})</Link></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Education')}><img src={education} alt="" /> Education / Training ({jobs?.filter(job => job?.categorey === "Education").length})</Link></td>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Research')}><img src={research} alt="" /> Reseach / Consultancy ({jobs?.filter(job => job?.categorey === "Research").length})</Link></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Hr')}><img src={management} alt="" /> Human Resource ({jobs?.filter(job => job?.categorey === "Hr").length})</Link></td>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Medical')}><img src={medical} alt="" /> Medical / Pharmacy ({jobs?.filter(job => job?.categorey === "Medical").length})</Link></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Music')}><img src={music} alt="" /> Music / Arts ({jobs?.filter(job => job?.categorey === "Music").length})</Link></td>
+                                                    <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Engineer')}><img src={engineer} alt="" /> Engineer / Architects ({jobs?.filter(job => job?.categorey === "Engineer").length})</Link></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
                                 </li>
                                 <li className="nav-item user">
                                     {
+                                        user ?
+                                            <>
+                                                <div className="dropdown">
+                                                    <Link className="" style={{ textDecoration: "none" }} to="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <img src={user_img} /> <span style={{ color: "#dcd9d9", marginLeft: "5px" }}>{user?.uname}</span>
+                                                    </Link>
+                                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{ padding: "10px" }}>
+                                                        <li id='wel' style={{ textAlign: "center" }}>
+                                                            <p><b>Welcome</b></p>
 
+                                                            {
+                                                                user ? <><span style={{ display: "block" }} id="uname"><img src={profile} style={{ display: "block", margin: "auto", width: "50px", marginBottom: "5px" }} />{user?.uname}
+                                                                    <span classNameName='' style={{ fontSize: "18px", marginLeft: "5px" }}>({user?.role}</span>)</span>
+                                                                    <p style={{ opacity: "0.7" }}>{user?.email}</p> </> :
+                                                                    <></>
+                                                            }
+
+                                                            <hr />
+                                                        </li>
+                                                        <li>
+                                                            {
+                                                                user
+                                                                &&
+                                                                <span className="dropdown-item" onClick={handleLogout} style={{ cursor: "pointer" }}><img src={logout_img} style={{ marginRight: "20px" }} />Logout</span>
+                                                            }
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </> :
+                                            <>
+                                                <NavLink className="nav-link" to="/login" style={{ display: "inline" }}><img src={user_img} alt="" /> Login /</NavLink>
+                                                <NavLink className="nav-link" to="/register" style={{ display: "inline" }}>Register</NavLink>
+                                            </>
                                     }
-                                    <NavLink className="nav-link" to="/login" style={{ display: "inline" }}><img src={user} alt="" /> Login /</NavLink>
-                                    <NavLink className="nav-link" to="/register" style={{ display: "inline" }}>Register</NavLink>
+
                                 </li>
                                 <li className="post">
-                                    <NavLink className='post-link' to='/post'>Post job</NavLink>
+                                    {
+                                        user?.role === "company" ?
+                                            <NavLink className='post-link' to='/post'>Post job</NavLink> :
+                                            user?.role === "job-seeker" ?
+                                                <NavLink className='post-link' to='/login' onClick={() => {
+                                                    alert("User role is not company. Please login into a job-seeker account.")
+                                                }}>Post job</NavLink> :
+                                                <NavLink className='post-link' to='/login'>Post job</NavLink>
+                                    }
                                 </li>
                             </ul>
 

@@ -16,6 +16,7 @@ import clock from "../assets/images/clock.png"
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import imgError from "../assets/images/ImgnotFound.jpg"
 // import TopJobs from './pages/TopJobs';
 // import HotJobs from './pages/HotJobs'
 // import FeaturedJobs from './pages/FeaturedJobs'
@@ -81,6 +82,7 @@ function Home({ setCategory }) {
         console.log("Clicked category:", category);
         setCategory(category);
     };
+
     return (
         <>
             <div className="home">
@@ -189,13 +191,15 @@ function Home({ setCategory }) {
                         {/* <div className="top-jobs"></div> */}
                         {
                             jobs?.map((item) => {
+                                // console.log("Image URLs:", item?.image);
+
                                 return (<>
                                     {item.type == type ?
                                         <div className="top-jobs" >
                                             <div className="job-items">
                                                 <div className="item-info">
                                                     <div className="item-image">
-                                                        <Link to={`/${item._id}`}><img src={item.image} alt="img" style={{ width: "90px" }} /></Link>
+                                                        <Link to={`/${item._id}`}><img src={item.image[0] || imgError} alt="img" style={{ width: "90px" }} /></Link>
                                                     </div>
                                                     <div className="item-content">
                                                         <div className="main-meta">

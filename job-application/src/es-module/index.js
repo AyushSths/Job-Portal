@@ -4,6 +4,7 @@ const cors = require('cors')
 const multer = require('multer')
 
 require("./config/database")
+require('dotenv').config()
 // Enable CORS for all routes
 app.use(cors());
 app.use(express.json())

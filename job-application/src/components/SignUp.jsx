@@ -120,6 +120,7 @@ function SignUp() {
                         </div>
                         <ErrorMessage msg={errors.role?.message} />
                     </div>
+
                     <div className="edu-input">
                         <div class="flex-column">
                             <label>Education </label></div>

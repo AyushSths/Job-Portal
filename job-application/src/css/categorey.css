@@ -1,10 +1,14 @@
 .job-cat {
     width: 55%;
+    -webkit-box-shadow: 5px 10px 8px #e4e4e4;
     box-shadow: 5px 10px 8px #e4e4e4;
     margin-top: 240px;
 }
 
 .categorey-section .container img {
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(rgba(0, 0, 0, 0)));
+    -webkit-mask-image: linear-gradient(#000, rgba(0, 0, 0, 0));
+    mask-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(rgba(0, 0, 0, 0)));
     mask-image: linear-gradient(#000, rgba(0, 0, 0, 0));
     /* -webkitmask-image: linear-gradient(#000, rgba(0, 0, 0, 1)); */
 }

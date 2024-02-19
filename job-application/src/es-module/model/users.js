@@ -26,6 +26,14 @@ const registerSchema = new Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        enum: ["company", "job-seeker"],
+        required: true,
+        set: function (value) {
+            return value.toLowerCase()
+        }
+    },
     education: {
         type: String,
         required: true
@@ -39,14 +47,6 @@ const registerSchema = new Schema({
         required: true,
         maxlength: 10,
         minlength: 10
-    },
-    role: {
-        type: String,
-        enum: ["company", "job-seeker"],
-        required: true,
-        set: function (value) {
-            return value.toLowerCase()
-        }
     },
 })
 

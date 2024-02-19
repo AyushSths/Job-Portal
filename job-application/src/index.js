@@ -8,15 +8,20 @@ import './css/footer.css'
 import './css/categorey.css'
 import './css/view.css'
 import './css/post.css'
+import './css/apply.css'
 import App from './App';
+import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
+import { store } from "./components/redux/store"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

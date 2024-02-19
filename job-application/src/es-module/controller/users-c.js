@@ -1,5 +1,6 @@
 const { Register } = require("../model/Users")
 const bcrypt = require("bcrypt")
+var jwt = require('jsonwebtoken');
 // const path = require("path")
 // const fs = require("fs")
 
@@ -17,10 +18,10 @@ const fetchlogin = async (req, res, next) => {
         if (status) {
 
             let obj = { ...user.toObject() }
-            console.log("obj", obj);
+            // console.log("obj", obj);
             delete obj.password
-            // var token = jwt.sign(obj, process.env.JWT_SECRET);
-            return res.send({ data: obj, msg: "Logged in" })
+            var token = jwt.sign(obj, process.env.JWT_SECRET);
+            return res.send({ data: obj, token, msg: "Logged in" })
         }
     }
     return res.status(401).send({ msg: "Incorrect email or password." })

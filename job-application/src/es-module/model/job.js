@@ -55,10 +55,10 @@ const jobsSchema = new Schema({
         type: Date,
         required: true
     },
-    // createdBy: {
-    //     type: String,
-    //     required: true
-    // },
+    createdBy: {
+        type: String,
+        required: true
+    },
     image: {
         type: [String]
     }

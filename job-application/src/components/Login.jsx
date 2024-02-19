@@ -6,9 +6,13 @@ import { useState } from 'react'
 import axios from "axios"
 import { useEffect } from 'react'
 import SetTimeout from './pages/SetTimeout'
+import { useDispatch } from 'react-redux';
+import { setUser } from './redux/slice/userSlice'
+
 function Login() {
     const throwIfNamespace = false
     let navigate = useNavigate()
+    let dispatch = useDispatch()
     let form_data = {
         username: "",
         email: "",
@@ -26,7 +30,11 @@ function Login() {
             .then((res) => {
                 console.log(res);
                 // console.log("username", res.data.user.name);
-                // localStorage.setItem("access token", res.data.access_token)
+                console.log("user", res.data.data);
+                dispatch(setUser(res.data.data))
+                // console.log("access token", res.data?.token);
+                localStorage.setItem('user', JSON.stringify(res.data.data));
+                localStorage.setItem("access token", res.data?.token)
                 navigate("/")
                 alert(res.data?.msg)
                 //setup user data in redux

@@ -3,12 +3,15 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Navigate, NavLink, useNavigate, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import ErrorMessage from './ErrorMessage'
 
 function PostJob() {
-
+    const user = useSelector((redux_state) => redux_state.user.value)
+    const navigate = useNavigate();
+    const { id } = useParams()
     const { register, handleSubmit, control, formState: { errors }, } = useForm();
     const [jobs, setJobs] = useState({
         name: "",
@@ -23,25 +26,54 @@ function PostJob() {
         type: "",
         createdAt: "",
         image: [],
+        createdBy: ""
     })
-    function handleChange(e) {
-        if (e.target.name == "image") {
-            setJobs({
-                ...jobs, image: [...jobs.image, ...e.target.files]
-            })
-        } else {
-            setJobs({
-                ...jobs, [e.target.name]: e.target.value
-            })
-        }
+    // function handleChange(e) {
+    //     if (e.target.name == "image") {
+    //         setJobs({
+    //             ...jobs, image: [...jobs.image, ...e.target.files]
+    //         })
+    //     } else {
+    //         setJobs({
+    //             ...jobs, [e.target.name]: e.target.value
+    //         })
+    //     }
 
+    // }
+
+    function handleChange(e) {
+        const { name, value, files } = e.target;
+
+        if (name === "image") {
+            setJobs(prevState => ({
+                ...prevState,
+                image: [...prevState.image, ...files]
+            }));
+        } else {
+            setJobs(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
     }
+
     const validateSalary = (value) => {
         if (!value || value.toLowerCase() === 'negotiable' || !isNaN(parseFloat(value))) {
             return true; // Valid
         }
         return 'Salary should be either a number or negotiable';
     }
+
+    useEffect(() => {
+        if (id) {
+            let url = `http://localhost:8000/api/jobs/${id}`
+            axios.get(url)
+                .then(res => {
+                    setJobs(res.data.data)
+                })
+        }
+    }, [id]);
+
     const onSubmit = async (event) => {
         let temp = [...jobs.image]
         try {
@@ -62,32 +94,51 @@ function PostJob() {
                 "image": jobs?.image.map(img => {
                     // Check if it's already a string (URL)
                     return typeof img === "string" ? img : URL.createObjectURL(img);
-                })
+                }),
+                'createdBy': user._id
             }
-            await axios.post(url, data)
-                .then(res => {
-                    console.log(res);
-                    alert(res.data?.message)
-                })
-                .catch(err => {
-                    console.error(err.message);
-                })
+            if (id) {
+                // Update existing product
+                await axios.put(`http://localhost:8000/api/jobs/edit/${id}`, data)
+                    .then(res => {
+                        console.log('Job updated successfully', res);
+                        alert("Job updated successfully!")
+                        navigate("/")
+                    })
+                    .catch(error => {
+                        console.error('Error updating product:', error);
+                        alert("Error updating product!")
+                    });
+            } else {
+                await axios.post(url, data)
+                    .then(res => {
+                        console.log(res);
+                        alert(res.data?.message)
+                        navigate("/posted")
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+            }
         }
         catch (err) {
             console.log('Server is not running', err)
         }
     }
+
+
     return (
         <>
+            <div className="container blur"></div>
             <div className="post-section">
-                <p style={{ opacity: "0.8", width: "50%", margin: "auto", marginTop: "50px" }}> <Link to="/" className="link">Home</Link> / Post</p>
+                <p style={{ opacity: "0.8", width: "50%", margin: "auto", marginTop: "50px" }}> <Link to="/" className="link">Home</Link> {id ? <span>/ Edit</span> : <span>/Post</span>}</p>
                 <div className="post-title" style={{ marginTop: "20px" }}>
-                    <h1>Post a Job</h1>
+                    {id ? <h1>Update Job</h1> : <h1>Post a Job</h1>}
                 </div>
                 <div className="post-form">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-title">
-                            <h4>Post a job</h4>
+                            {id ? <h4>Update Job</h4> : <h4>Post a Job</h4>}
                             <p style={{ color: "red", marginLeft: "auto" }}>Mandatory fields*</p>
                         </div>
                         <hr style={{ margin: "0" }} />
@@ -96,7 +147,7 @@ function PostJob() {
                                 <td>Company Name <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input {...register("company", {
-                                        required: "This field is required*", maxLength: {
+                                        required: !jobs?.company && "This field is required*", maxLength: {
                                             value: 50,
                                             message: "Max length is 50"
                                         }
@@ -108,7 +159,7 @@ function PostJob() {
                                 <td>Job Title <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input {...register("name", {
-                                        required: "This field is required*", maxLength: {
+                                        required: !jobs?.name && "This field is required*", maxLength: {
                                             value: 30,
                                             message: "Max length is 30"
                                         }
@@ -120,7 +171,7 @@ function PostJob() {
                                 <td>Job categorey <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <select {...register("categorey", {
-                                        required: "This field is required*"
+                                        required: !jobs?.categorey && "This field is required*"
                                     })} id="" name='categorey' value={jobs?.categorey} onChange={handleChange}>
                                         <option value="" disabled selected >Select Category</option>
                                         <option value="It">Information technology</option>
@@ -134,66 +185,11 @@ function PostJob() {
                                     <ErrorMessage msg={errors.categorey?.message} />
                                 </td>
                             </tr>
-                            {/* <tr>
-                                <td>Job Type <span style={{ color: "red" }}>*</span></td>
-                                <td style={{ display: "flex" }}>
-                                    <div className="form-check">
-                                        <label className="form-check-label" for="flexRadioDefault1">
-                                            Top
-                                            <Controller
-                                                control={control}
-                                                name="type"
-                                                render={({ field }) => (
-                                                    <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == 'top'} onChange={handleChange} />
-                                                )} />
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <label className="form-check-label" for="flexRadioDefault1">
-                                            Hot
-                                            <Controller
-                                                control={control}
-                                                name="type"
-                                                render={({ field }) => (
-                                                    <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == "hot"} onChange={handleChange} />
-                                                )} />
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <label className="form-check-label" for="flexRadioDefault1">
-                                            Featured
-                                            <Controller
-                                                control={control}
-                                                name="type"
-                                                render={({ field }) => (
-                                                    <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == "featured"} onChange={handleChange} />
-                                                )} />
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <label className="form-check-label" for="flexRadioDefault1">
-                                            Normal
-                                            <Controller
-                                                control={control}
-                                                name="type"
-                                                render={({ field }) => (
-                                                    <input style={{ width: "0", height: "0" }} className="form-check-input"
-                                                        type="radio"  {...field} name="flexRadioDefault" id="flexRadioDefault1" value={jobs?.type == "normal"} onChange={handleChange} />
-                                                )} />
-                                        </label>
-                                    </div>
-
-
-                                </td>
-                            </tr> */}
                             <tr>
                                 <td>Job Type <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <select name="type" id="" {...register("type", {
-                                        required: "This field is required*"
+                                        required: !jobs?.type && "This field is required*"
                                     })} value={jobs?.type} onChange={handleChange} >
                                         <option value="0" style={{ opacity: "0.8" }}>Select type...</option>
                                         <option value="top" >Top</option>
@@ -208,7 +204,7 @@ function PostJob() {
                                 <td>Job Level <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <select name="jobLevel" id="" {...register("jobLevel", {
-                                        required: "This field is required*"
+                                        required: !jobs?.jobLevel && "This field is required*"
                                     })} value={jobs?.jobLevel} onChange={handleChange} >
                                         <option value="0">Select Level...</option>
                                         <option value="fresher" >Fresher</option>
@@ -223,7 +219,7 @@ function PostJob() {
                                 <td>Location <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <select name="location" id="" {...register("location", {
-                                        required: "This field is required*"
+                                        required: !jobs?.location && "This field is required*"
                                     })} value={jobs?.location} onChange={handleChange} >
                                         <option value="0">Select District...</option>
                                         <option value="Kathmandu" >Kathmandu</option>
@@ -238,7 +234,7 @@ function PostJob() {
                                 <td>Salary <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input type="text" placeholder='Salary' {...register("offeredSalary", {
-                                        required: "This field is required*",
+                                        required: !jobs?.offeredSalary && "This field is required*",
                                         validate: validateSalary
                                     })} name="offeredSalary" value={jobs?.offeredSalary} onChange={handleChange} />
                                     <ErrorMessage msg={errors.offeredSalary?.message} />
@@ -248,7 +244,7 @@ function PostJob() {
                                 <td>No. of Vacancy <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input type="number" name="noOfVacancy" id="" placeholder='Vacancy no.' {...register("noOfVacancy", {
-                                        required: "This field is required*"
+                                        required: !jobs?.noOfVacancy && "This field is required*"
                                     })} value={jobs?.noOfVacancy} onChange={handleChange} />
                                     <ErrorMessage msg={errors.noOfVacancy?.message} />
                                 </td>
@@ -257,7 +253,7 @@ function PostJob() {
                                 <td>Description <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <textarea {...register("description", {
-                                        required: "This field is required*", maxLength: {
+                                        required: !jobs?.description && "This field is required*", maxLength: {
                                             value: 300,
                                             message: "Max length is 300"
                                         }
@@ -270,7 +266,7 @@ function PostJob() {
                                 <td>Applicant Start <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input type='date' name="createdAt" class="form-control" placeholder='Start date' {...register("createdAt", {
-                                        required: "This field is required*"
+                                        required: !jobs?.createdAt && "This field is required*"
                                     })} value={jobs?.createdAt} onChange={handleChange} /><br />
                                 </td>
                             </tr>
@@ -278,7 +274,7 @@ function PostJob() {
                                 <td>Applicant Deadline <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input type='date' name="deadline" class="form-control" placeholder='Deadline' {...register("deadline", {
-                                        required: "This field is required*"
+                                        required: !jobs?.deadline && "This field is required*"
                                     })} value={jobs?.deadline} onChange={handleChange} /><br />
 
                                 </td>
@@ -287,7 +283,7 @@ function PostJob() {
                                 <td>Image <span style={{ color: "red" }}>*</span></td>
                                 <td>
                                     <input {...register("image", {
-                                        required: "This field is required*"
+                                        required: !jobs?.image && "This field is required*"
                                     })} type="file" multiple class="form-control" name="image" onChange={handleChange} />
                                     <ErrorMessage msg={errors.image?.message} />
                                     {
@@ -308,7 +304,7 @@ function PostJob() {
                             </tr>
                         </table>
                         <button className="post_btn" style={{ backgroundColor: "transparent", border: "none" }}>
-                            <span className='post_link'>Post job</span>
+                            {id ? <span className='post_link'>Update post</span> : <span className='post_link'>Post job</span>}
                         </button>
                     </form>
                 </div>

@@ -12,6 +12,8 @@ import Categorey from './components/Categorey';
 import View from './components/pages/View';
 import SignUp from './components/SignUp';
 import PostJob from './components/pages/PostJob';
+import Apply from './components/pages/Apply';
+import PostedJobs from './components/pages/PostedJobs';
 
 function App() {
   const [condition, setCondition] = useState(false)
@@ -19,16 +21,20 @@ function App() {
 
   return (
     <>
-      <Navbar setCondition={setCondition} />
+      <Navbar setCondition={setCondition} setCategory={setCategory} />
       <div className='route-container'>
         <Routes>
           <Route path="/" exact element={<Home setCategory={setCategory} />} />
           <Route path="/categorey" element={<Categorey category={categorey} />} />
           <Route path="/about" element={<About />} />
           <Route path="/:id" element={<View />} />
+          <Route path="/apply" element={<Apply />} />
+          {/* <Route path="/edit" element={<Edit />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/post" element={<PostJob />} />
+          <Route path="/edit/:id" element={<PostJob />} />
+          <Route path="/posted" element={<PostedJobs />} />
         </Routes>
         <Footer />
       </div>
