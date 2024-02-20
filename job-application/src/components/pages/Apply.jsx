@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom'
 import { remove } from '../redux/slice/applySlice'
 import eye from "../../assets/images/eye.png"
 import trash from "../../assets/images/trash.png"
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+// define "lord-icon" custom element with default properties
+defineElement(lottie.loadAnimation);
 
 function Apply() {
     const dispatch = useDispatch()
@@ -50,8 +54,22 @@ function Apply() {
                                                 <td>{details?.categorey}</td>
                                                 {/* <td>{details?.createdAt}</td> */}
                                                 <td>{details?.deadline}</td>
-                                                <td><Link to={`/${details?._id}`}><img src={eye} alt="" className="icon_hover" /></Link>
-                                                    <img src={trash} onClick={handleRemove} style={{ cursor: "pointer", marginLeft: "20px" }} className="icon_hover" /> </td>
+                                                <td><Link to={`/${details?._id}`}>
+                                                    {/* <img src={eye} alt="" className="icon_hover" /> */}
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/vfczflna.json"
+                                                        trigger="hover"
+                                                        style={{ width: "25px", height: "25px" }}>
+                                                    </lord-icon>
+                                                </Link>
+                                                    {/* <img src={trash} onClick={handleRemove} style={{ cursor: "pointer", marginLeft: "20px" }} className="icon_hover" /> */}
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/skkahier.json"
+                                                        trigger="hover"
+                                                        colors="primary:#c71f16"
+                                                        style={{ width: "25px", height: "25px", cursor: "pointer", marginLeft: "20px" }}>
+                                                    </lord-icon>
+                                                </td>
                                             </tr>
                                         </>
                                     )

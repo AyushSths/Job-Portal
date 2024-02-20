@@ -36,11 +36,9 @@ const registerSchema = new Schema({
     },
     education: {
         type: String,
-        required: true
     },
     company: {
         type: String,
-        required: true
     },
     contact: {
         type: String,

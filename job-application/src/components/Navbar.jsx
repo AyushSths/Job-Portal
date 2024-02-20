@@ -16,8 +16,13 @@ import music from "../assets/images/music.png"
 import research from "../assets/images/research.png"
 import { useState } from 'react';
 import axios from 'axios';
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+// define "lord-icon" custom element with default properties
+defineElement(lottie.loadAnimation);
 
 function Navbar({ setCondition, setCategory }) {
+
     const user = useSelector((redux_state) => redux_state.user?.value)
     // const user_s = useSelector((redux_store) => {
     //     return redux_store.user.value
@@ -137,14 +142,29 @@ function Navbar({ setCondition, setCategory }) {
                                             <>
                                                 <div className="dropdown">
                                                     <Link className="" style={{ textDecoration: "none" }} to="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <img src={user_img} /> <span style={{ color: "#dcd9d9", marginLeft: "5px" }}>{user?.uname}</span>
+                                                        {/* <img src={user_img} />  */}
+                                                        <lord-icon
+                                                            src="https://cdn.lordicon.com/hrjifpbq.json"
+                                                            trigger="hover"
+                                                            colors="primary:#e4e4e4"
+                                                            style={{ width: "32px", height: "32px" }}>
+                                                        </lord-icon>
+                                                        <span style={{ color: "#dcd9d9", marginLeft: "5px", position: "relative", top: "-11px" }}>{user?.uname}</span>
                                                     </Link>
                                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{ padding: "10px" }}>
                                                         <li id='wel' style={{ textAlign: "center" }}>
                                                             <p><b>Welcome</b></p>
 
                                                             {
-                                                                user ? <><span style={{ display: "block" }} id="uname"><img src={profile} style={{ display: "block", margin: "auto", width: "50px", marginBottom: "5px" }} />{user?.uname}
+                                                                user ? <><span style={{ display: "block" }} id="uname">
+                                                                    {/* <img src={profile} style={{ display: "block", margin: "auto", width: "50px", marginBottom: "5px" }} /> */}
+                                                                    <lord-icon
+                                                                        src="https://cdn.lordicon.com/hrjifpbq.json"
+                                                                        trigger="hover"
+                                                                        colors="primary:#198745"
+                                                                        style={{ width: "75px", height: "75px", display: "block", margin: "auto" }}>
+                                                                    </lord-icon>
+                                                                    {user?.uname}
                                                                     <span classNameName='' style={{ fontSize: "18px", marginLeft: "5px" }}>({user?.role}</span>)</span>
                                                                     <p style={{ opacity: "0.7" }}>{user?.email}</p> </> :
                                                                     <></>
@@ -156,28 +176,53 @@ function Navbar({ setCondition, setCategory }) {
                                                             {
                                                                 user
                                                                 &&
-                                                                <span className="dropdown-item" onClick={handleLogout} style={{ cursor: "pointer" }}><img src={logout_img} style={{ marginRight: "20px" }} />Logout</span>
+                                                                <span className="dropdown-item" onClick={handleLogout} style={{ cursor: "pointer" }}>
+                                                                    <img src={logout_img} style={{ marginRight: "20px" }} />Logout</span>
                                                             }
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </> :
                                             <>
-                                                <NavLink className="nav-link" to="/login" style={{ display: "inline" }}><img src={user_img} alt="" /> Login /</NavLink>
-                                                <NavLink className="nav-link" to="/register" style={{ display: "inline" }}>Register</NavLink>
+                                                <NavLink className="nav-link" to="/login" style={{ display: "inline" }}>
+                                                    {/* <img src={user_img} alt="" /> */}
+                                                    <lord-icon
+                                                        src="https://cdn.lordicon.com/hrjifpbq.json"
+                                                        trigger="hover"
+                                                        colors="primary:#e4e4e4"
+                                                        style={{ width: "32px", height: "32px" }}>
+                                                    </lord-icon>
+                                                    <span style={{ position: "relative", top: "-11px", marginLeft: "5px" }}>Login /</span> </NavLink>
+                                                <NavLink className="nav-link" to="/register" style={{ display: "inline", position: "relative", top: "-11px", marginLeft: "-13px" }}>Register</NavLink>
                                             </>
                                     }
 
                                 </li>
                                 <li className="post">
+
                                     {
                                         user?.role === "company" ?
-                                            <NavLink className='post-link' to='/post'>Post job</NavLink> :
+                                            <NavLink className='post-link' to='/post'><lord-icon
+                                                src="https://cdn.lordicon.com/fowixcuo.json"
+                                                trigger="hover"
+                                                colors="primary:#ffffff"
+                                                style={{ width: "23px", height: "23px" }}>
+                                            </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span></NavLink> :
                                             user?.role === "job-seeker" ?
                                                 <NavLink className='post-link' to='/login' onClick={() => {
                                                     alert("User role is not company. Please login into a job-seeker account.")
-                                                }}>Post job</NavLink> :
-                                                <NavLink className='post-link' to='/login'>Post job</NavLink>
+                                                }}><lord-icon
+                                                    src="https://cdn.lordicon.com/fowixcuo.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff"
+                                                    style={{ width: "23px", height: "23px" }}>
+                                                    </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span></NavLink> :
+                                                <NavLink className='post-link' to='/login'><lord-icon
+                                                    src="https://cdn.lordicon.com/fowixcuo.json"
+                                                    trigger="hover"
+                                                    colors="primary:#ffffff"
+                                                    style={{ width: "23px", height: "23px" }}>
+                                                </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span></NavLink>
                                     }
                                 </li>
                             </ul>

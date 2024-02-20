@@ -17,16 +17,22 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import imgError from "../assets/images/ImgnotFound.jpg"
+
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+// define "lord-icon" custom element with default properties
+defineElement(lottie.loadAnimation);
+
 // import TopJobs from './pages/TopJobs';
 // import HotJobs from './pages/HotJobs'
 // import FeaturedJobs from './pages/FeaturedJobs'
 // import NormalJobs from './pages/NormalJobs'
 
 function Home({ setCategory }) {
-    const [showHotJobs, setShowHotJobs] = useState(false);
-    const [showTopJobs, setShowTopJobs] = useState(true);
-    const [showFeaturedJobs, setShowFeaturedJobs] = useState(false);
-    const [showNormalJobs, setShowNormalJobs] = useState(false);
+    // const [showHotJobs, setShowHotJobs] = useState(false);
+    // const [showTopJobs, setShowTopJobs] = useState(true);
+    // const [showFeaturedJobs, setShowFeaturedJobs] = useState(false);
+    // const [showNormalJobs, setShowNormalJobs] = useState(false);
     const [type, setType] = useState("top")
 
     function handleJobTpye(jobtype) {
@@ -94,7 +100,17 @@ function Home({ setCategory }) {
                         <p style={{ fontSize: "30px" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit"><img src={search} alt="" /></button>
+                            <button className="btn btn-outline-success" type="submit">
+                                {/* <img src={search} alt="" /> */}
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/unukghxb.json"
+                                    trigger="hover"
+                                    stroke="bold"
+                                    colors="primary:#ffffff,secondary:#e4e4e4"
+                                    style={{ width: "35px", height: "35px" }}
+                                >
+                                </lord-icon>
+                            </button>
                         </form>
                     </div>
                 </div>

@@ -6,6 +6,10 @@ import clock from "../assets/images/clock.png"
 import home_image from '../assets/images/home_image.jpg'
 import search from "../assets/images/search.png"
 import axios from "axios"
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+// define "lord-icon" custom element with default properties
+defineElement(lottie.loadAnimation)
 // import Home from '../../../Aaach/src/component/Home'
 function Categorey({ category }) {
     const [jobs, setJobs] = useState(null);
@@ -32,7 +36,17 @@ function Categorey({ category }) {
                 <p style={{ opacity: "0.6" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
                 <form className="d-flex">
                     <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
-                    <button className="btn btn-outline-success" type="submit" ><img src={search} alt="" /></button>
+                    <button className="btn btn-outline-success" type="submit" >
+                        {/* <img src={search} alt="" /> */}
+                        <lord-icon
+                            src="https://cdn.lordicon.com/unukghxb.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#ffffff,secondary:#e4e4e4"
+                            style={{ width: "35px", height: "35px" }}
+                        >
+                        </lord-icon>
+                    </button>
                 </form>
             </div>
             <div className="jobs job-cat">
