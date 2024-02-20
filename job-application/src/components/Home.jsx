@@ -68,6 +68,8 @@ function Home({ setCategory }) {
     //     setShowNormalJobs(true)
     // };
 
+    const [isLoadingProduct, setisLoadingProduct] = useState(true);
+
     const [jobs, setJobs] = useState(null)
 
     function fetchData() {
@@ -75,6 +77,7 @@ function Home({ setCategory }) {
             .then(res => {
                 console.log("data", res);
                 setJobs(res.data.data)
+                setisLoadingProduct(false)
             })
             .catch(err => {
                 console.log("error", err);
@@ -88,6 +91,20 @@ function Home({ setCategory }) {
         console.log("Clicked category:", category);
         setCategory(category);
     };
+
+    if (isLoadingProduct) {
+        return <>
+            <div className="loader">
+                <lord-icon
+                    src="https://cdn.lordicon.com/jpgpblwn.json"
+                    trigger="loop"
+                    state="loop-spin"
+                    colors="primary:#198745"
+                    style={{ width: "70px", height: "70px", display: "block", margin: "auto", marginTop: "20%" }}>
+                </lord-icon>
+            </div>
+        </>
+    }
 
     return (
         <>

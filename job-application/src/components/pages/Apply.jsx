@@ -19,10 +19,31 @@ function Apply() {
     const userAppliedJobs = applied?.filter(job => job?.appliedBy === user?._id);
     console.log("Applied_details", applied);
     console.log("User applied", userAppliedJobs);
+    const [isLoadingProduct, setisLoadingProduct] = useState(true);
 
     const handleRemove = () => {
         // localStorage.removeItem("access_token")
         dispatch(remove())
+    }
+
+    useEffect(() => {
+        if (userAppliedJobs) {
+            setisLoadingProduct(false)
+        }
+    }, [])
+
+    if (isLoadingProduct) {
+        return <>
+            <div className="loader">
+                <lord-icon
+                    src="https://cdn.lordicon.com/jpgpblwn.json"
+                    trigger="loop"
+                    state="loop-spin"
+                    colors="primary:#198745"
+                    style={{ width: "50px", height: "50px", display: "block", margin: "auto", marginTop: "20%" }}>
+                </lord-icon>
+            </div>
+        </>
     }
 
     return (
@@ -67,7 +88,7 @@ function Apply() {
                                                         src="https://cdn.lordicon.com/skkahier.json"
                                                         trigger="hover"
                                                         colors="primary:#c71f16"
-                                                        style={{ width: "25px", height: "25px", cursor: "pointer", marginLeft: "20px" }}>
+                                                        style={{ width: "25px", height: "25px", cursor: "pointer", marginLeft: "20px" }} onClick={handleRemove}>
                                                     </lord-icon>
                                                 </td>
                                             </tr>

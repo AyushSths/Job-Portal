@@ -17,6 +17,7 @@ function PostedJobs() {
     const dispatch = useDispatch()
     const user = useSelector((redux_state) => redux_state.user.value);
     const [jobs, setJobs] = useState(null)
+    const [isLoadingProduct, setisLoadingProduct] = useState(true);
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/jobs")
@@ -25,8 +26,8 @@ function PostedJobs() {
                 console.log("postedJObs", posted);
                 const userPostedJobs = posted?.filter(job => job?.createdBy === user?._id);
                 console.log("USerpostedJObs", userPostedJobs);
-
                 setJobs(userPostedJobs)
+                setisLoadingProduct(false)
             })
             .catch(err => {
                 console.log("error", err);
@@ -36,6 +37,20 @@ function PostedJobs() {
     const handleRemove = () => {
         // localStorage.removeItem("access_token")
         dispatch(remove())
+    }
+
+    if (isLoadingProduct) {
+        return <>
+            <div className="loader">
+                <lord-icon
+                    src="https://cdn.lordicon.com/jpgpblwn.json"
+                    trigger="loop"
+                    state="loop-spin"
+                    colors="primary:#198745"
+                    style={{ width: "50px", height: "50px", display: "block", margin: "auto", marginTop: "20%" }}>
+                </lord-icon>
+            </div>
+        </>
     }
 
     return (
