@@ -69,40 +69,65 @@ function Home({ setCategory, setSearchTerm }) {
     // };
 
     const [isLoadingProduct, setisLoadingProduct] = useState(true);
-
+    const [timeoutReached, setTimeoutReached] = useState(false);
     const [jobs, setJobs] = useState(null)
 
-    function fetchData() {
-        axios.get(`http://localhost:8000/api/jobs`)
-            .then(res => {
-                console.log("data", res);
-                setJobs(res.data.data)
-                setisLoadingProduct(false)
-            })
-            .catch(err => {
-                console.log("error", err);
-            })
-    }
     useEffect(() => {
-        fetchData()
-    }, [])
+        const fetchData = () => {
+            axios.get(`http://localhost:8000/api/jobs`)
+                .then(res => {
+                    console.log("data", res);
+                    setJobs(res.data.data);
+                    setisLoadingProduct(false);
+                })
+                .catch(err => {
+                    console.log("error", err);
+                    // setTimeoutReached(true);
+                });
+        };
+
+        const timeout = setTimeout(() => {
+            setTimeoutReached(true);
+        }, 30000); // 30 sec timeout
+
+        fetchData();
+
+        return () => clearTimeout(timeout);
+    }, []);
+
 
     const handleCategoryClick = (category) => {
         console.log("Clicked category:", category);
         setCategory(category);
     };
 
-    const handleSearch = () => {
-        // if (!searchValue) {
-        //     alert('Please enter a search value')
-        //     return;
-        // }
-
-        // let url = "http://localhost:8000/api/jobs?search=" + searchValue;
-        // window.location.href = url;
 
 
-    };
+    if (isLoadingProduct && timeoutReached) {
+        const refreshPage = () => {
+            window.location.reload();
+        };
+        return (
+            <section class="page_404">
+                <div class="container_box">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-10 col-sm-offset-1  text-center" style={{ margin: "auto" }}>
+                                <div class="four_zero_four_bg">
+                                    <h1 class="text-center ">404</h1>
+                                </div>
+                                <div class="contant_box_404">
+                                    <h3 class="h2">Looks like you're lost</h3>
+                                    <p>The page you are looking for is not available!</p>
+                                    <button onClick={refreshPage} class="link_404" style={{ border: "none" }}>Try Again</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     if (isLoadingProduct) {
         return <>
@@ -117,6 +142,34 @@ function Home({ setCategory, setSearchTerm }) {
             </div>
         </>
     }
+
+    // if (jobs === null || jobs.length === 0) {
+    //     return <section class="page_404">
+    //         <div class="container_box">
+    //             <div class="row">
+    //                 <div class="col-sm-12 ">
+    //                     <div class="col-sm-10 col-sm-offset-1  text-center" style={{ margin: "auto" }}>
+    //                         <div class="four_zero_four_bg">
+    //                             <h1 class="text-center ">404</h1>
+
+
+    //                         </div>
+
+    //                         <div class="contant_box_404">
+    //                             <h3 class="h2">
+    //                                 Look like you're lost
+    //                             </h3>
+
+    //                             <p>the page you are looking for not avaible!</p>
+
+    //                             <Link to="/" class="link_404">Go to Home</Link>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </section>
+    // }
 
     return (
         <>
