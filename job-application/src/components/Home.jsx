@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import home_image from '../assets/images/home_image.jpg'
 import search from "../assets/images/search.png"
 import accounting from "../assets/images/accounting.png"
@@ -28,13 +28,13 @@ defineElement(lottie.loadAnimation);
 // import FeaturedJobs from './pages/FeaturedJobs'
 // import NormalJobs from './pages/NormalJobs'
 
-function Home({ setCategory }) {
+function Home({ setCategory, setSearchTerm }) {
     // const [showHotJobs, setShowHotJobs] = useState(false);
     // const [showTopJobs, setShowTopJobs] = useState(true);
     // const [showFeaturedJobs, setShowFeaturedJobs] = useState(false);
     // const [showNormalJobs, setShowNormalJobs] = useState(false);
     const [type, setType] = useState("top")
-
+    const navigate = useNavigate()
     function handleJobTpye(jobtype) {
         setType(jobtype)
     }
@@ -73,7 +73,7 @@ function Home({ setCategory }) {
     const [jobs, setJobs] = useState(null)
 
     function fetchData() {
-        axios.get("http://localhost:8000/api/jobs")
+        axios.get(`http://localhost:8000/api/jobs`)
             .then(res => {
                 console.log("data", res);
                 setJobs(res.data.data)
@@ -92,6 +92,18 @@ function Home({ setCategory }) {
         setCategory(category);
     };
 
+    const handleSearch = () => {
+        // if (!searchValue) {
+        //     alert('Please enter a search value')
+        //     return;
+        // }
+
+        // let url = "http://localhost:8000/api/jobs?search=" + searchValue;
+        // window.location.href = url;
+
+
+    };
+
     if (isLoadingProduct) {
         return <>
             <div className="loader">
@@ -100,7 +112,7 @@ function Home({ setCategory }) {
                     trigger="loop"
                     state="loop-spin"
                     colors="primary:#198745"
-                    style={{ width: "70px", height: "70px", display: "block", margin: "auto", marginTop: "20%" }}>
+                    style={{ width: "65px", height: "65px", display: "block", margin: "auto", marginTop: "20%" }}>
                 </lord-icon>
             </div>
         </>
@@ -115,9 +127,16 @@ function Home({ setCategory }) {
                     <div className="info">
                         <h1 style={{ display: "block", textAlign: "center", fontSize: "60px" }}>Find your dream job!</h1>
                         <p style={{ fontSize: "30px" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">
+                        <form className="d-flex" onSubmit={(e) => {
+                            e.preventDefault();
+                            setSearchTerm(e.target.querySelector('input[type="search"]').value);
+                            console.log(e.target.querySelector('input[type="search"]').value);
+                            navigate("/search")
+
+                        }}>
+                            <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" name="search" required />
+
+                            <button className="btn btn-outline-success" type="submit" >
                                 {/* <img src={search} alt="" /> */}
                                 <lord-icon
                                     src="https://cdn.lordicon.com/unukghxb.json"
@@ -128,6 +147,8 @@ function Home({ setCategory }) {
                                 >
                                 </lord-icon>
                             </button>
+
+
                         </form>
                     </div>
                 </div>

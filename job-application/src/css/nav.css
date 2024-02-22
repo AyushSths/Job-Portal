@@ -51,6 +51,9 @@
 
 .navbar-light .navbar-brand {
     font-size: 35px;
+    padding: 0;
+    position: relative;
+    top: 5px;
 }
 
 .navbar-light .navbar-brand:hover {

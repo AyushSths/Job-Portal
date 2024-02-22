@@ -68,7 +68,20 @@ function Navbar({ setCondition, setCategory }) {
                 <nav className={`navbar navbar-expand-lg navbar-light ${isNotHome ? 'bg-grey' : ''}`}>
                     <div className="container-fluid">
                         {/* <NavLink className="navbar-brand" to="/" style={{ color: "#198745", fontWeight: "700" }}>Jobs Portal</NavLink> */}
-                        <NavLink className={`navbar-brand ${isNotHome ? '' : 'logo'}`} to="/" style={{ color: "#198745", fontWeight: "700" }}>Jobs Portal</NavLink>
+                        <NavLink className={`navbar-brand ${isNotHome ? '' : 'logo'}`} to="/" style={{ color: "#dbfbe8", fontWeight: "700" }}>
+                            <lord-icon
+                                // src="https://cdn.lordicon.com/rhprarly.json"
+                                // trigger="hover"
+                                // stroke="bold"
+                                // colors="primary:#198745,secondary:#198745"
+                                src="https://cdn.lordicon.com/kfmfikzu.json"
+                                trigger="hover"
+                                stroke="bold"
+                                state="hover-rotate-up-to-down"
+                                colors="primary:#198745,secondary:#d1faf0"
+                                style={{ width: "50px", height: "50px", marginRight: "5px" }}>
+                            </lord-icon>
+                            <span style={{ position: "relative", top: "-10px" }}>Jobs Portal</span></NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { remove } from '../redux/slice/applySlice'
 import eye from "../../assets/images/eye.png"
 import trash from "../../assets/images/trash.png"
@@ -18,8 +18,9 @@ function PostedJobs() {
     const user = useSelector((redux_state) => redux_state.user.value);
     const [jobs, setJobs] = useState(null)
     const [isLoadingProduct, setisLoadingProduct] = useState(true);
+    // const { id } = useParams();
 
-    useEffect(() => {
+    function fetchData() {
         axios.get("http://localhost:8000/api/jobs")
             .then(res => {
                 const posted = res.data.data
@@ -32,12 +33,33 @@ function PostedJobs() {
             .catch(err => {
                 console.log("error", err);
             })
+    }
+
+    useEffect(() => {
+        fetchData()
     }, [])
 
-    const handleRemove = () => {
-        // localStorage.removeItem("access_token")
-        dispatch(remove())
-    }
+    const deleteItem = (itemId) => {
+        if (!window.confirm('Are you sure to delete this item ?')) return;
+        axios
+            .delete(`http://localhost:8000/api/jobs/${itemId}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    console.log("Item deleted from list");
+                    // After successful deletion, you can update the cart details by fetching the updated data.
+                    fetchData();
+                } else {
+                    console.error("Unexpected status code:", res.status);
+                }
+            })
+            .catch((err) => {
+                if (err.response && err.response.status === 404) {
+                    console.log("Item not found in cart.", itemId);
+                } else {
+                    console.error("Error deleting item from cart", err);
+                }
+            });
+    };
 
     if (isLoadingProduct) {
         return <>
@@ -104,7 +126,8 @@ function PostedJobs() {
                                                         src="https://cdn.lordicon.com/skkahier.json"
                                                         trigger="hover"
                                                         colors="primary:#c71f16"
-                                                        style={{ width: "25px", height: "25px", cursor: "pointer", marginLeft: "20px" }}>
+                                                        style={{ width: "25px", height: "25px", cursor: "pointer", marginLeft: "20px" }}
+                                                        onClick={() => deleteItem(details?._id)}>
                                                     </lord-icon>
                                                 </td>
                                             </tr>

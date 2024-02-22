@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import money from "../assets/images/money.png"
 import location from "../assets/images/location.png"
 import clock from "../assets/images/clock.png"
@@ -11,31 +11,53 @@ import { defineElement } from "@lordicon/element";
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation)
 // import Home from '../../../Aaach/src/component/Home'
-function Categorey({ category }) {
-    const [jobs, setJobs] = useState(null);
 
+function Categorey({ category, setSearchTerm }) {
+    const [jobs, setJobs] = useState(null);
+    const [isLoadingProduct, setisLoadingProduct] = useState(true);
+    const navigate = useNavigate()
     async function fetchData() {
         try {
-            const response = await axios.get('http://localhost:8000/api/jobs');
+            const response = await axios.get(`http://localhost:8000/api/jobs`);
             setJobs(response.data.data);
+            setisLoadingProduct(false)
         } catch (error) {
             console.log('Error fetching data:', error);
         }
     }
 
     useEffect(() => {
-        if (!jobs) {
-            fetchData();
-        }
+        fetchData();
     }, []);
+
+
+    if (isLoadingProduct) {
+        return <>
+            <div className="loader">
+                <lord-icon
+                    src="https://cdn.lordicon.com/jpgpblwn.json"
+                    trigger="loop"
+                    state="loop-spin"
+                    colors="primary:#198745"
+                    style={{ width: "50px", height: "50px", display: "block", margin: "auto", marginTop: "20%" }}>
+                </lord-icon>
+            </div>
+        </>
+    }
+
     return (
         <>
             <div className="container blur"></div>
             <div className="info" style={{ margin: "auto" }}>
                 <p style={{ opacity: "0.8", marginBottom: "30px", marginTop: "-20px" }}> <Link to="/" className="link" style={{ color: "white" }}>Home</Link>  / Category / {category}</p>
                 <p style={{ opacity: "0.6" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
-                <form className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" />
+                <form className="d-flex" onSubmit={(e) => {
+                    e.preventDefault();
+                    setSearchTerm(e.target.querySelector('input[type="search"]').value)
+                    console.log(e.target.search.value);
+                    navigate("/search")
+                }}>
+                    <input className="form-control me-2" type="search" placeholder="Search by job title, categorey, company" aria-label="Search" name="search" />
                     <button className="btn btn-outline-success" type="submit" >
                         {/* <img src={search} alt="" /> */}
                         <lord-icon

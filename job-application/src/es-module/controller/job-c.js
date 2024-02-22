@@ -17,6 +17,20 @@ const fetchjobs = async (req, res, next) => {
     // })
 }
 
+const fetchSearch = async (req, res, next) => {
+    let search_term = req.query.search_term || "";
+    // console.log("Search Term:", search_term);
+    let jobs = await Job.find({
+        $or: [
+            { name: { $regex: search_term, $options: 'i' } }, // Search by job name (case-insensitive)
+            { categorey: { $regex: search_term, $options: 'i' } }, // Search by job categorey (case-insensitive)
+            { company: { $regex: search_term, $options: 'i' } } // Search by company name (case-insensitive)
+        ]
+    });
+
+    res.send({ data: jobs });
+}
+
 const fetchjobs_id = async (req, res, next) => {
     let jobs = await Job.findById(req.params.id)
     res.send({ data: jobs })
@@ -95,19 +109,19 @@ const update = async (req, res, next) => {
 }
 
 const delete_items = async (req, res) => {
-    const itemId = req.params.itemId;
+    const itemId = req.params.id;
 
     try {
         // Find the item by ID and remove it from the database
-        const deletedItem = await Product.findByIdAndRemove(itemId);
+        const deletedItem = await Job.findOneAndDelete({ _id: itemId });
         console.log("Deleted", deletedItem)
         if (!deletedItem) {
             // If the item is not found in the database, return a 404 Not Found response.
-            return res.status(404).json({ message: "Item not found in the cart." });
+            return res.status(404).json({ message: "Job not found in the list." });
         }
 
         // Respond with a success message.
-        res.json({ message: "Item removed from the cart." });
+        res.json({ message: "Job removed from the list." });
     } catch (error) {
         console.error("Error deleting item:", error);
         res.status(500).json({ message: "Internal server error" });
@@ -118,5 +132,7 @@ module.exports = {
     fetchjobs,
     store,
     fetchjobs_id,
-    update
+    update,
+    fetchSearch,
+    delete_items
 }

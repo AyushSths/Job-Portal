@@ -86,7 +86,7 @@
     transition: 0.3s ease;
 }
 
-.info .btn-outline-success:hover {
+.info .link .btn-outline-success:hover {
     background-color: rgb(15, 108, 165);
     border: none;
 }
