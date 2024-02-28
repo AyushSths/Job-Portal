@@ -14,6 +14,7 @@ import management from "../assets/images/management.png"
 import medical from "../assets/images/medical-symbol.png"
 import music from "../assets/images/music.png"
 import research from "../assets/images/research.png"
+import toggler from "../assets/images/toggler.png"
 import { useState } from 'react';
 import axios from 'axios';
 import lottie from "lottie-web";
@@ -74,6 +75,7 @@ function Navbar({ setCondition, setCategory }) {
                                 // trigger="hover"
                                 // stroke="bold"
                                 // colors="primary:#198745,secondary:#198745"
+                                className="lord-icon"
                                 src="https://cdn.lordicon.com/kfmfikzu.json"
                                 trigger="hover"
                                 stroke="bold"
@@ -81,9 +83,11 @@ function Navbar({ setCondition, setCategory }) {
                                 colors="primary:#198745,secondary:#d1faf0"
                                 style={{ width: "50px", height: "50px", marginRight: "5px" }}>
                             </lord-icon>
-                            <span style={{ position: "relative", top: "-10px" }}>Jobs Portal</span></NavLink>
+                            <span>Jobs Portal</span></NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
+                            <span >
+                                <img src={toggler} alt="" />
+                            </span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${isNotHome ? '' : 'items'}`}>
@@ -149,7 +153,13 @@ function Navbar({ setCondition, setCategory }) {
 
                                     </div>
                                 </li>
-                                <li className="nav-item user">
+
+                            </ul>
+
+                        </div>
+                        <div className="nav-right">
+                            <div className={`rightSide-nav ${isNotHome ? '' : 'items'}`}>
+                                <div className="nav-item user">
                                     {
                                         user ?
                                             <>
@@ -206,12 +216,12 @@ function Navbar({ setCondition, setCategory }) {
                                                         style={{ width: "32px", height: "32px" }}>
                                                     </lord-icon>
                                                     <span style={{ position: "relative", top: "-11px", marginLeft: "5px" }}>Login /</span> </NavLink>
-                                                <NavLink className="nav-link" to="/register" style={{ display: "inline", position: "relative", top: "-11px", marginLeft: "-13px" }}>Register</NavLink>
+                                                <NavLink className="nav-link" to="/register" style={{ display: "inline", position: "relative", top: "-11px", marginLeft: "-30px", }}>Register</NavLink>
                                             </>
                                     }
 
-                                </li>
-                                <li className="post">
+                                </div>
+                                <div className="post">
 
                                     {
                                         user?.role === "company" ?
@@ -237,9 +247,8 @@ function Navbar({ setCondition, setCategory }) {
                                                     style={{ width: "23px", height: "23px" }}>
                                                 </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span></NavLink>
                                     }
-                                </li>
-                            </ul>
-
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>

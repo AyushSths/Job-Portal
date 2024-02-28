@@ -99,3 +99,46 @@ select option {
 .contant_box_404 {
   margin-top: -50px;
 }
+
+h1 {
+  font-size: clamp(12px, 4vw, 32px);
+}
+
+@media only screen and (min-width:1024px) and (max-width:1439px) {
+  .navibar .navbar .container-fluid {
+    margin: 0 120px;
+  }
+
+  .navbar-light .navbar-brand span {
+    font-size: 32px;
+    top: -15px;
+  }
+
+  .container-fluid .navbar-light .navbar-brand .lord-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media(max-width:1300px) {
+  .navibar .navbar .container-fluid {
+    margin: 0 30px;
+  }
+}
+
+/* @media(min-width:1200px) {
+  .navibar .navbar .container-fluid {
+    max-width: 1140px;
+  }
+} */
+
+@media only screen and (min-width:768px) and (max-width:1023px) {
+
+  /* .navbar-light .navbar-brand {
+    margin: auto;
+  }
+*/
+  .navbar-light .navbar-toggler span {
+    color: #fff;
+  }
+}

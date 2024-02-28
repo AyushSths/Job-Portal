@@ -58,9 +58,13 @@ function PostJob() {
     }
 
     const validateSalary = (value) => {
+        // const salary = parseFloat(value);
         if (!value || value.toLowerCase() === 'negotiable' || !isNaN(parseFloat(value))) {
             return true; // Valid
         }
+        // if (isNaN(salary) || salary <= 1000) {
+        //     return "Minimum salary should be greater than 1000";
+        // }
         return 'Salary should be either a number or negotiable';
     }
 
@@ -235,7 +239,11 @@ function PostJob() {
                                 <td>
                                     <input type="text" placeholder='Salary' {...register("offeredSalary", {
                                         required: !jobs?.offeredSalary && "This field is required*",
-                                        validate: validateSalary
+                                        min: {
+                                            value: 1000,
+                                            message: "Salary must be at least 1000"
+                                        },
+                                        validate: validateSalary,
                                     })} name="offeredSalary" value={jobs?.offeredSalary} onChange={handleChange} />
                                     <ErrorMessage msg={errors.offeredSalary?.message} />
                                 </td>
@@ -243,9 +251,13 @@ function PostJob() {
                             <tr>
                                 <td>No. of Vacancy <span style={{ color: "red" }}>*</span></td>
                                 <td>
-                                    <input type="number" name="noOfVacancy" id="" placeholder='Vacancy no.' {...register("noOfVacancy", {
-                                        required: !jobs?.noOfVacancy && "This field is required*"
-                                    })} value={jobs?.noOfVacancy} onChange={handleChange} />
+                                    <input {...register("noOfVacancy", {
+                                        required: !jobs?.noOfVacancy && "This field is required*",
+                                        min: {
+                                            value: 1,
+                                            message: "Must be greater than or equal to 1"
+                                        }
+                                    })} type="number" name="noOfVacancy" id="" placeholder='Vacancy no.' value={jobs?.noOfVacancy} onChange={handleChange} />
                                     <ErrorMessage msg={errors.noOfVacancy?.message} />
                                 </td>
                             </tr>
