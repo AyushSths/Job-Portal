@@ -28,7 +28,7 @@ function View() {
 
     const appliedJobs = useSelector((redux_state) => redux_state.applied.value);
     async function handleApply() {
-        await axios.get(`http://localhost:8000/api/jobs/${id}`)
+        await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/${id}`)
             .then(res => {
                 console.log("applied_data", res);
                 const jobDetails = res.data?.data

@@ -21,7 +21,7 @@ function PostJob() {
 
         try {
             console.log('Form Data:', event);
-            let url = "http://localhost:8000/api/jobs/post"
+            let url = "https://job-portal-drab-iota.vercel.app/api/jobs/post"
             const formData = new FormData();
 
             // Append image files to the FormData object

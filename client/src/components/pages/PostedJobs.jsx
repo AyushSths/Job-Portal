@@ -21,7 +21,7 @@ function PostedJobs() {
     // const { id } = useParams();
 
     function fetchData() {
-        axios.get("http://localhost:8000/api/jobs")
+        axios.get("https://job-portal-drab-iota.vercel.app/api/jobs")
             .then(res => {
                 const posted = res.data.data
                 console.log("postedJObs", posted);

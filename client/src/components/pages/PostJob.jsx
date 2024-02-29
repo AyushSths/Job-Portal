@@ -70,7 +70,7 @@ function PostJob() {
 
     useEffect(() => {
         if (id) {
-            let url = `http://localhost:8000/api/jobs/${id}`
+            let url = `https://job-portal-drab-iota.vercel.app/api/jobs/${id}`
             axios.get(url)
                 .then(res => {
                     setJobs(res.data.data)

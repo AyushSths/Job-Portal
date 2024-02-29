@@ -18,7 +18,7 @@ function Categorey({ category, setSearchTerm }) {
     const navigate = useNavigate()
     async function fetchData() {
         try {
-            const response = await axios.get(`http://localhost:8000/api/jobs`);
+            const response = await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs`);
             setJobs(response.data.data);
             setisLoadingProduct(false)
         } catch (error) {
