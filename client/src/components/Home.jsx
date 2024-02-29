@@ -84,7 +84,7 @@ function Home({ setCategory, setSearchTerm }) {
         });
 
         const fetchData = () => {
-            axios.get(`http://localhost:8000/api/jobs`)
+            axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs`)
                 .then(res => {
                     console.log("data", res);
                     setJobs(res.data.data);
