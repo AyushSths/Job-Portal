@@ -16,7 +16,7 @@ function View() {
     const { id } = useParams();
 
     async function fetchData() {
-        await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/${id}`)
+        await axios.get(`https://job-portal-drab-iota.vercel.app/${id}`)
             .then(res => {
                 console.log("data", res);
                 setJobs(res.data?.data)
