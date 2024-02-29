@@ -16,18 +16,33 @@ function Categorey({ category, setSearchTerm }) {
     const [jobs, setJobs] = useState(null);
     const [isLoadingProduct, setisLoadingProduct] = useState(true);
     const navigate = useNavigate()
-    async function fetchData() {
-        try {
-            const response = await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs`);
-            setJobs(response.data.data);
-            setisLoadingProduct(false)
-        } catch (error) {
-            console.log('Error fetching data:', error);
-        }
-    }
+    // async function fetchData() {
+    //     try {
+    //         const response = await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs`);
+    //         setJobs(response.data.data);
+    //         setisLoadingProduct(false)
+    //     } catch (error) {
+    //         console.log('Error fetching data:', error);
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     useEffect(() => {
-        fetchData();
+
+        axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs`)
+            .then(res => {
+                console.log("data", res);
+                setJobs(res.data.data);
+                setisLoadingProduct(false);
+            })
+            .catch(err => {
+                console.log("error", err);
+                // setTimeoutReached(true);
+            });
+
     }, []);
 
 
