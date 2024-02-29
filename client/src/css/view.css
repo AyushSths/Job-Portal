@@ -1,0 +1,79 @@
+.view {
+    margin: auto;
+    max-width: 50%;
+    background-color: #ffff;
+    border-radius: 0px 0px 10px 10px;
+    position: relative;
+    box-shadow: 5px 10px 8px #a8a6a6;
+}
+
+.view .banner-section {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.view .banner-section .banner-title {
+    background-color: #eeecec;
+    padding: 60px 30px 10px 30px;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0px 10px 0 10px;
+}
+
+.view .banner-section .banner-title .title {
+    margin-left: 20px;
+    display: -ms-grid;
+    display: grid;
+    -ms-flex-line-pack: end;
+    align-content: end;
+}
+
+.view .banner-section img {
+    width: 90px;
+}
+
+.banner-content {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.app-link button span {
+    border: 1px solid #ffff;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    display: inline-block;
+    -webkit-transition: 0.5s ease-out;
+    -o-transition: 0.5s ease-out;
+    transition: 0.5s ease-out;
+}
+
+.app-link button:hover .circle {
+    border-color: black;
+}
+
+/* .banner-content tr {
+    border: 1px solid #e3e3e3;
+    border-left: none;
+    border-right: none;
+} */
+
+/* .banner-content tr th {
+    width: 33%;
+}
+
+.banner-content tr td {
+    width: 67%;
+} */
+
+.banner-content tr th,
+.banner-content tr td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}

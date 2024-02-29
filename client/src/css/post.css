@@ -1,0 +1,64 @@
+.post-form {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #ffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 10px 8px #a8a6a6;
+    position: relative;
+}
+
+.form-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.post-title h1 {
+    text-align: center;
+}
+
+.post-table tr {
+    border-bottom: 30px solid transparent
+}
+
+.post-table tr td input,
+.post-table tr td textarea,
+.post-table tr td select {
+    width: 100%;
+    height: 45px;
+    /* font-size: 16px; */
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.post-table tr td .form-check {
+    margin-right: 40px;
+}
+
+.post-table tr td .form-check label {
+    margin-left: 8px;
+}
+
+.post-form form .post_btn .post_link {
+    display: block;
+    padding: 11px 50px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #ffff;
+    background-color: #198745;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    -webkit-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+    transition: 0.4s ease;
+}
+
+.post-form form .post_btn .post_link:hover {
+    opacity: 0.8;
+    background-color: rgb(15, 108, 165);
+}
