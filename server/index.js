@@ -8,7 +8,7 @@ require('dotenv').config()
 // Enable CORS for all routes
 app.use(cors(
     {
-        origin: ["https://job-portal-ayush-chi.vercel.app/"],
+        origin: ["https://job-portal-ayush-rho.vercel.app/"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true
     }
