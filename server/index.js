@@ -6,7 +6,13 @@ const cors = require('cors')
 require("./config/database")
 require('dotenv').config()
 // Enable CORS for all routes
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://job-portal-ayush-chi.vercel.app/"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true
+    }
+));
 app.use(express.json())
 
 
