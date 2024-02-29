@@ -24,7 +24,7 @@ function Login() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        let url = "https://job-portal-drab-iota.vercel.app/api/users/login"
+        let url = "http://localhost:8000/api/users/login"
         await axios
             .post(url, data)
             .then((res) => {
