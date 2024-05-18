@@ -1,6 +1,6 @@
 .view {
     margin: auto;
-    max-width: 50%;
+    width: 50%;
     background-color: #ffff;
     border-radius: 0px 0px 10px 10px;
     position: relative;

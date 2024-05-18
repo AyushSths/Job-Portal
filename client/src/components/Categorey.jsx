@@ -113,7 +113,7 @@ function Categorey({ category, setSearchTerm }) {
                                             <div className="item-content">
                                                 <div className="main-meta">
                                                     <div className="title-link">
-                                                        <strong><Link to={`/${item._id}`} className='link job-title' style={{ fontSize: "18px" }}>{item?.name} required.</Link></strong>
+                                                        <strong><Link to={`/${item._id}`} className='link job-title'>{item?.name} required.</Link></strong>
                                                         <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
                                                     </div>
                                                 </div>

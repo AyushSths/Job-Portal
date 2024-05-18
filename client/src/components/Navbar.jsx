@@ -68,27 +68,31 @@ function Navbar({ setCondition, setCategory }) {
             <div className="navibar">
                 <nav className={`navbar navbar-expand-lg navbar-light ${isNotHome ? 'bg-grey' : ''}`}>
                     <div className="container-fluid">
-                        {/* <NavLink className="navbar-brand" to="/" style={{ color: "#198745", fontWeight: "700" }}>Jobs Portal</NavLink> */}
-                        <NavLink className={`navbar-brand ${isNotHome ? '' : 'logo'}`} to="/" style={{ color: "#dbfbe8", fontWeight: "700" }}>
-                            <lord-icon
-                                // src="https://cdn.lordicon.com/rhprarly.json"
-                                // trigger="hover"
-                                // stroke="bold"
-                                // colors="primary:#198745,secondary:#198745"
-                                className="lord-icon"
-                                src="https://cdn.lordicon.com/kfmfikzu.json"
-                                trigger="hover"
-                                stroke="bold"
-                                state="hover-rotate-up-to-down"
-                                colors="primary:#198745,secondary:#d1faf0"
-                                style={{ width: "50px", height: "50px", marginRight: "5px" }}>
-                            </lord-icon>
-                            <span>Jobs Portal</span></NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span >
                                 <img src={toggler} alt="" />
                             </span>
                         </button>
+                        {/* <NavLink className="navbar-brand" to="/" style={{ color: "#198745", fontWeight: "700" }}>Jobs Portal</NavLink> */}
+                        <div>
+                            <NavLink className={`navbar-brand ${isNotHome ? '' : 'logo'}`} to="/" style={{ color: "#dbfbe8", fontWeight: "700" }}>
+                                <lord-icon
+                                    // src="https://cdn.lordicon.com/rhprarly.json"
+                                    // trigger="hover"
+                                    // stroke="bold"
+                                    // colors="primary:#198745,secondary:#198745"
+                                    className="lord-icon"
+                                    src="https://cdn.lordicon.com/kfmfikzu.json"
+                                    trigger="hover"
+                                    stroke="bold"
+                                    state="hover-rotate-up-to-down"
+                                    colors="primary:#198745,secondary:#d1faf0"
+                                    style={{ width: "45px", height: "45px", marginRight: "5px" }}>
+                                </lord-icon>
+                                <span>Jobs Portal</span>
+                            </NavLink>
+                        </div>
+
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className={`navbar-nav me-auto mb-2 mb-lg-0 ${isNotHome ? '' : 'items'}`}>
                                 <li className="nav-item">
@@ -239,13 +243,15 @@ function Navbar({ setCondition, setCategory }) {
                                                     trigger="hover"
                                                     colors="primary:#ffffff"
                                                     style={{ width: "23px", height: "23px" }}>
-                                                    </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span></NavLink> :
+                                                    </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span>
+                                                </NavLink> :
                                                 <NavLink className='post-link' to='/login'><lord-icon
                                                     src="https://cdn.lordicon.com/fowixcuo.json"
                                                     trigger="hover"
                                                     colors="primary:#ffffff"
                                                     style={{ width: "23px", height: "23px" }}>
-                                                </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span></NavLink>
+                                                </lord-icon><span style={{ position: "relative", top: "-5px", marginLeft: "10px" }}>Post job</span>
+                                                </NavLink>
                                     }
                                 </div>
                             </div>

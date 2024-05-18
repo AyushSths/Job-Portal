@@ -190,7 +190,7 @@ function Home({ setCategory, setSearchTerm }) {
                     <div className="dark-overlay"></div>
                     {/* <img src={home_image} alt="" className='home_img' /> */}
                     <div className="info">
-                        <h1 style={{ display: "block", textAlign: "center", fontSize: "60px" }}>Find your dream job!</h1>
+                        <h1 style={{ display: "block", textAlign: "center", fontSize: "60px" }} className="text-red-500 font-bold underline">Find your dream job!</h1>
                         <p style={{ fontSize: "30px" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
                         <form className="d-flex" onSubmit={(e) => {
                             e.preventDefault();
@@ -218,38 +218,6 @@ function Home({ setCategory, setSearchTerm }) {
                     </div>
                 </div>
                 <div>
-                    {/* Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi qui veniam laboriosam facilis nemo incidunt modi saepe eum quo aperiam repudiandae doloremque temporibus vitae, laborum dolor aliquam quaerat assumenda accusantium. */}
                 </div>
                 <div className="categorey" data-aos="fade">
                     <div className="cat_list">
@@ -357,7 +325,7 @@ function Home({ setCategory, setSearchTerm }) {
                                                     <div className="item-content">
                                                         <div className="main-meta">
                                                             <div className="title-link">
-                                                                <strong><Link to={`/${item._id}`} className='link job-title' style={{ fontSize: "18px" }}>{item?.name} required.</Link></strong>
+                                                                <strong><Link to={`/${item._id}`} className='link job-title'>{item?.name} required.</Link></strong>
                                                                 <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
                                                             </div>
                                                         </div>

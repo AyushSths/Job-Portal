@@ -1,10 +1,3 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
-
 .home {}
 
 .container {
@@ -212,6 +205,10 @@
     top: -27px;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.job-title {
+    font-size: 18px
 }
 
 .item-content {
