@@ -90,7 +90,8 @@ function Register() {
 
         if (validForm) {
             //api call
-            let url = "http://localhost:8000/api/users/register"
+            // let url = "http://localhost:8000/api/users/register"
+            let url = "https://job-portal-app-api-98as.onrender.com/api/users/register"
             let data = {
                 "uname": event.target.uname.value,
                 "email": event.target.email.value,

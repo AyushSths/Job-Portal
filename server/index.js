@@ -6,11 +6,8 @@ const cors = require('cors')
 require("./config/database")
 require('dotenv').config()
 // Enable CORS for all routes
-app.use(cors(
-    {
-        origin: ["http://localhost:3000/", "https://Job-Portal.onrender.com"]
-    }
-));
+app.use(cors());
+
 app.use(express.json())
 
 

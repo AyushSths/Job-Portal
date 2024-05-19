@@ -24,7 +24,8 @@ function Login() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        let url = "http://localhost:8000/api/users/login"
+        // let url = "http://localhost:8000/api/users/login"
+        let url = "https://job-portal-app-api-98as.onrender.com/api/users/login"
         await axios
             .post(url, data)
             .then((res) => {
@@ -40,7 +41,8 @@ function Login() {
                 //setup user data in redux
             })
             .catch(err => {
-                setError(err.response.data?.msg)
+                // setError(err.response?.data?.msg)
+                console.log(err);
             })
     }
 
