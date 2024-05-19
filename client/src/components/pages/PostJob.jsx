@@ -70,7 +70,8 @@ function PostJob() {
 
     useEffect(() => {
         if (id) {
-            let url = `https://job-portal-drab-iota.vercel.app/api/jobs/${id}`
+            // let url = `https://job-portal-drab-iota.vercel.app/api/jobs/${id}`
+            let url = `https://job-portal-app-api-98as.onrender.com/api/jobs/${id}`
             axios.get(url)
                 .then(res => {
                     setJobs(res.data.data)
@@ -103,7 +104,8 @@ function PostJob() {
             }
             if (id) {
                 // Update existing product
-                await axios.put(`http://localhost:8000/api/jobs/edit/${id}`, data)
+                // await axios.put(`http://localhost:8000/api/jobs/edit/${id}`, data)
+                await axios.put(`https://job-portal-app-api-98as.onrender.com/api/jobs/edit/${id}`, data)
                     .then(res => {
                         console.log('Job updated successfully', res);
                         alert("Job updated successfully!")

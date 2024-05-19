@@ -22,7 +22,8 @@ function SearchJobs({ setCategory, setSearchTerm, search_term }) {
     console.log("Search_term", search_term);
 
     function fetchData() {
-        axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/search?search_term=${search_term}`)
+        // axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/search?search_term=${search_term}`)
+        axios.get(`https://job-portal-app-api-98as.onrender.com/api/jobs/search?search_term=${search_term}`)
             .then(res => {
                 console.log("Searched data", res);
                 setJobs(res.data.data)

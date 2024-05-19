@@ -21,7 +21,8 @@ function PostedJobs() {
     // const { id } = useParams();
 
     function fetchData() {
-        axios.get("https://job-portal-drab-iota.vercel.app/api/jobs")
+        // axios.get("https://job-portal-drab-iota.vercel.app/api/jobs")
+        axios.get("https://job-portal-app-api-98as.onrender.com/api/jobs")
             .then(res => {
                 const posted = res.data.data
                 console.log("postedJObs", posted);
@@ -42,7 +43,8 @@ function PostedJobs() {
     const deleteItem = (itemId) => {
         if (!window.confirm('Are you sure to delete this item ?')) return;
         axios
-            .delete(`http://localhost:8000/api/jobs/${itemId}`)
+            // .delete(`http://localhost:8000/api/jobs/${itemId}`)
+            .delete(`https://job-portal-app-api-98as.onrender.com/api/jobs/${itemId}`)
             .then((res) => {
                 if (res.status === 200) {
                     console.log("Item deleted from list");

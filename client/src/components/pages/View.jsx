@@ -16,7 +16,8 @@ function View() {
     const { id } = useParams();
 
     async function fetchData() {
-        await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/${id}`)
+        // await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/${id}`)
+        await axios.get(`https://job-portal-app-api-98as.onrender.com/api/jobs/${id}`)
             .then(res => {
                 console.log("data", res);
                 setJobs(res.data?.data)
@@ -28,7 +29,8 @@ function View() {
 
     const appliedJobs = useSelector((redux_state) => redux_state.applied.value);
     async function handleApply() {
-        await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/${id}`)
+        // await axios.get(`https://job-portal-drab-iota.vercel.app/api/jobs/${id}`)
+        await axios.get(`https://job-portal-app-api-98as.onrender.com/api/jobs/${id}`)
             .then(res => {
                 console.log("applied_data", res);
                 const jobDetails = res.data?.data

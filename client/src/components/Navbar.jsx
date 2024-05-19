@@ -38,7 +38,8 @@ function Navbar({ setCondition, setCategory }) {
     const [jobs, setJobs] = useState(null)
 
     function fetchData() {
-        axios.get("https://job-portal-drab-iota.vercel.app/api/jobs")
+        // axios.get("https://job-portal-drab-iota.vercel.app/api/jobs")
+        axios.get("http://localhost:8000/api/jobs")
             .then(res => {
                 console.log("data", res);
                 setJobs(res.data.data)

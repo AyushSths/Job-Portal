@@ -27,7 +27,8 @@ function SignUp() {
     const onSubmit = async (datas, event) => {
         event.preventDefault()
         // console.log(datas)
-        let url = "https://job-portal-drab-iota.vercel.app/api/users/register"
+        // let url = "https://job-portal-drab-iota.vercel.app/api/users/register"
+        let url = "https://job-portal-app-api-98as.onrender.com/api/users/register"
         let data = {
             "uname": event.target.uname.value,
             "email": event.target.email.value,
