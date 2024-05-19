@@ -83,7 +83,8 @@ function PostJob() {
         let temp = [...jobs.image]
         try {
             console.log('Form Data:', event);
-            let url = "http://localhost:8000/api/jobs/post"
+            // let url = "http://localhost:8000/api/jobs/post"
+            let url = "https://job-portal-app-api-98as.onrender.com/api/jobs/post"
             let data = {
                 "name": jobs.name,
                 "categorey": jobs.categorey,
