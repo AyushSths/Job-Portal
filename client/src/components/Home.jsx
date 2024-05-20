@@ -156,35 +156,6 @@ function Home({ setCategory, setSearchTerm }) {
             </div>
         </>
     }
-
-    // if (jobs === null || jobs.length === 0) {
-    //     return <section class="page_404">
-    //         <div class="container_box">
-    //             <div class="row">
-    //                 <div class="col-sm-12 ">
-    //                     <div class="col-sm-10 col-sm-offset-1  text-center" style={{ margin: "auto" }}>
-    //                         <div class="four_zero_four_bg">
-    //                             <h1 class="text-center ">404</h1>
-
-
-    //                         </div>
-
-    //                         <div class="contant_box_404">
-    //                             <h3 class="h2">
-    //                                 Look like you're lost
-    //                             </h3>
-
-    //                             <p>the page you are looking for not avaible!</p>
-
-    //                             <Link to="/" class="link_404">Go to Home</Link>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </section>
-    // }
-
     return (
         <>
             <div className="home">
@@ -192,8 +163,8 @@ function Home({ setCategory, setSearchTerm }) {
                     <div className="dark-overlay"></div>
                     {/* <img src={home_image} alt="" className='home_img' /> */}
                     <div className="info">
-                        <h1 style={{ display: "block", textAlign: "center", fontSize: "60px" }} className="text-red-500 font-bold underline">Find your dream job!</h1>
-                        <p style={{ fontSize: "30px" }}>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
+                        <h1>Find your dream job!</h1>
+                        <p>A dream doesn't become reality through magic; it takes sweat, determination and hard work....</p>
                         <form className="d-flex" onSubmit={(e) => {
                             e.preventDefault();
                             setSearchTerm(e.target.querySelector('input[type="search"]').value);
@@ -214,8 +185,6 @@ function Home({ setCategory, setSearchTerm }) {
                                 >
                                 </lord-icon>
                             </button>
-
-
                         </form>
                     </div>
                 </div>
@@ -297,7 +266,7 @@ function Home({ setCategory, setSearchTerm }) {
                     </div>
                 </div>
                 <div className="section-list">
-                    <div className="section-titles" style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div className="section-titles" style={{ display: "flex", justifyContent: "space-between", flexWrap: 'wrap' }}>
                         <h4>Latest Jobs</h4>
                         <ul className="tab-menu" style={{ display: "flex" }}>
                             <li className="menu-item"><a className='item-link' href="#top-jobs" onClick={() => handleJobTpye('top')}>Top jobs</a></li>
@@ -322,7 +291,7 @@ function Home({ setCategory, setSearchTerm }) {
                                             <div className="job-items">
                                                 <div className="item-info">
                                                     <div className="item-image">
-                                                        <Link to={`/${item._id}`}><img src={item.image[0] || imgError} alt="img" style={{ width: "90px" }} /></Link>
+                                                        <Link className="com-img" to={`/${item._id}`}><img src={item.image[0] || imgError} alt="img" /></Link>
                                                     </div>
                                                     <div className="item-content">
                                                         <div className="main-meta">
@@ -331,7 +300,7 @@ function Home({ setCategory, setSearchTerm }) {
                                                                 <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
                                                             </div>
                                                         </div>
-                                                        <div className="meta-bottom d-flex">
+                                                        <div className="meta-bottom">
                                                             <div className="wraper type-wrap">
                                                                 <span><img src={location} alt="" /> {item.location}</span>
                                                             </div>

@@ -4,7 +4,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     max-width: 100%;
-    margin: 0px;
+    /* margin: 0 auto; */
     padding: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -28,10 +28,21 @@
 }
 
 .info {
-    max-width: 50%;
+    max-width: 930px;
     color: white;
     position: relative;
     top: 105px;
+    margin: auto;
+}
+
+.info h1 {
+    font-size: 60px;
+    display: block;
+    text-align: center;
+}
+
+.info p {
+    font-size: 30px;
 }
 
 .home_img {
@@ -69,7 +80,7 @@
     color: white;
     /* font-size: 18px; */
     background-color: #198745;
-    width: 8%;
+    width: 10%;
     position: relative;
     /* right: 13px; */
     top: -11px;
@@ -190,12 +201,12 @@
 
 .jobs {
     position: relative;
-    top: -10px;
+    /* top: -10px; */
     /* width: 60%; */
     margin: auto;
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .top-jobs {
@@ -205,6 +216,12 @@
     top: -27px;
     padding: 10px;
     margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-between;
 }
 
 .job-title {
@@ -216,6 +233,15 @@
     top: 8px;
     /* right: 640px; */
     left: 155px;
+}
+
+.item-info .item-image .com-img img {
+    display: inline-block;
+    width: 90px;
+}
+
+.meta-bottom {
+    display: flex;
 }
 
 .apply-btn .app-link button {
@@ -240,7 +266,27 @@
     box-shadow: inset 0 -100px 0 0 #198745;
 }
 
-.apply-btn .app-link button:hover {
+.apply-edit-btn .app-link button {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    -webkit-transition: ease-out 0.5s;
+    -o-transition: ease-out 0.5s;
+    transition: ease-out 0.5s;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    -webkit-box-shadow: inset 0 -100px 0 0 #198745;
+    box-shadow: inset 0 -100px 0 0 #198745;
+}
+
+.apply-btn .app-link button:hover,
+.apply-edit-btn .app-link button:hover {
     color: black;
     background: transparent;
     -webkit-box-shadow: inset 0 0 0 0 #198745;
@@ -248,7 +294,8 @@
     border: 2px solid #198745;
 }
 
-.apply-btn .app-link button:active {
+.apply-btn .app-link button:active,
+.apply-edit-btn .app-link button:active {
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
     transform: scale(0.9);

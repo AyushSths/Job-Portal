@@ -21,6 +21,9 @@
     padding: 60px 30px 10px 30px;
     border-radius: 0px 0px 10px 10px;
     margin: 0px 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .view .banner-section .banner-title .title {
@@ -56,20 +59,6 @@
 .app-link button:hover .circle {
     border-color: black;
 }
-
-/* .banner-content tr {
-    border: 1px solid #e3e3e3;
-    border-left: none;
-    border-right: none;
-} */
-
-/* .banner-content tr th {
-    width: 33%;
-}
-
-.banner-content tr td {
-    width: 67%;
-} */
 
 .banner-content tr th,
 .banner-content tr td {

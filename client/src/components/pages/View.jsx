@@ -63,20 +63,22 @@ function View() {
             <div className="container blur"></div>
             <div className="view">
                 <div className="banner-section"  >
-                    <div className="banner-title" style={{ display: "flex" }}>
-                        <img src={jobs?.image[0]} alt="" />
-                        <div className="title">
-                            <h5 style={{ display: "block" }}>{jobs?.company}</h5>
-                            <p>{jobs?.categorey}</p>
-                            <div className="apply-btn">
-                                {
-                                    user?.role === "job-seeker" ?
-                                        <Link to="/apply" className='app-link'><button style={{ top: "85px" }} onClick={handleApply}><span className='circle'>+</span> Apply now</button></Link> :
-                                        user?.role === "company" ?
-                                            <Link to={`/edit/${jobs?._id}`} className='app-link'><button style={{ top: "85px" }}>Edit</button></Link> :
-                                            <Link to="/login" className='app-link'><button style={{ top: "85px" }}><span className='circle'>+</span> Apply now</button></Link>
-                                }
+                    <div className="banner-title">
+                        <div className="header-content d-flex" >
+                            <img src={jobs?.image[0]} alt="" />
+                            <div className="title">
+                                <h5 style={{ display: "block" }}>{jobs?.company}</h5>
+                                <p>{jobs?.categorey}</p>
                             </div>
+                        </div>
+                        <div className="apply-edit-btn">
+                            {
+                                user?.role === "job-seeker" ?
+                                    <Link to="/apply" className='app-link'><button style={{ top: "85px" }} onClick={handleApply}><span className='circle'>+</span> Apply now</button></Link> :
+                                    user?.role === "company" ?
+                                        <Link to={`/edit/${jobs?._id}`} className='app-link'><button style={{ top: "85px" }}>Edit</button></Link> :
+                                        <Link to="/login" className='app-link'><button style={{ top: "85px" }}><span className='circle'>+</span> Apply now</button></Link>
+                            }
                         </div>
                     </div>
                     <div className="banner-content">
