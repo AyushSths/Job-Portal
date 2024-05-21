@@ -34,9 +34,7 @@ export const applySlice = createSlice({
 
         },
         remove: (state, action) => {
-            let index = state.value.indexOf(action.payload)
-            state.value.splice(index, 1)
-
+            state.value = state.value.filter(job => job._id !== action.payload);
         }
     }
 })

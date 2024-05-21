@@ -85,7 +85,23 @@
 .nav-item.user {
     position: relative;
     left: -30px;
-    top: 9px;
+}
+
+.user_profile {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.user_profile .user_name {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5px;
+
+}
+
+.user_profile .user_name .nav-link {
+    padding: 0;
 }
 
 .n-collapse {
@@ -148,7 +164,6 @@
 .dropdown-menu table tbody tr .dropdown-item img {
     /* display: inline;  */
     width: 18px;
-
 }
 
 .navbar-light .navbar-brand span {
@@ -168,6 +183,15 @@
 }
 
 .rightSide-nav.top {
-
     top: -105px;
+}
+
+.cat-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cat-section p .dropdown-item img {
+    width: 18px;
 }

@@ -3,7 +3,6 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, json } from 'react-router-dom';
 import Home from './components/Home';
-import About from './components/About';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -29,7 +28,6 @@ function App() {
           <Route path="/" exact element={<Home setCategory={setCategory} setSearchTerm={setSearchTerm} search_term={search_term} />} />
           <Route path="/search" exact element={<SearchJobs setCategory={setCategory} setSearchTerm={setSearchTerm} search_term={search_term} />} />
           <Route path="/categorey" element={<Categorey category={categorey} setSearchTerm={setSearchTerm} search_term={search_term} />} />
-          <Route path="/about" element={<About />} />
           <Route path="/:id" element={<View />} />
           <Route path="/apply" element={<Apply />} />
           {/* <Route path="/edit" element={<Edit />} /> */}

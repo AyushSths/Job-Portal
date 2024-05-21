@@ -1,6 +1,12 @@
+.post-section {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .post-form {
-    width: 50%;
-    margin: auto;
+    /* width: 50%;
+    margin: auto; */
     margin-top: 20px;
     background-color: #ffff;
     padding: 20px;

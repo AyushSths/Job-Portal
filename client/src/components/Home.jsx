@@ -151,7 +151,7 @@ function Home({ setCategory, setSearchTerm }) {
                     trigger="loop"
                     state="loop-spin"
                     colors="primary:#198745"
-                    style={{ width: "65px", height: "65px", display: "block", margin: "auto", marginTop: "20%" }}>
+                    style={{ width: "50px", height: "50px", display: "block", margin: "auto", marginTop: "20%" }}>
                 </lord-icon>
             </div>
         </>

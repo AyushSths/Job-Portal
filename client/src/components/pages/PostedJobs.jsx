@@ -106,31 +106,34 @@ function PostedJobs() {
                                                 <td>{details?.categorey}</td>
                                                 {/* <td>{details?.createdAt}</td> */}
                                                 <td>{details?.deadline}</td>
-                                                <td><Link to={`/edit/${details?._id}`}>
-                                                    {/* <img src={edit} alt="" className="icon_hover" /> */}
-                                                    <lord-icon
-                                                        src="https://cdn.lordicon.com/wuvorxbv.json"
-                                                        trigger="hover"
-                                                        colors="primary:#121331,secondary:#198745"
-                                                        style={{ width: "25px", height: "25px" }}>
-                                                    </lord-icon>
-                                                </Link>
-                                                    <Link to={`/${details?._id}`}>
-                                                        {/* <img src={eye} alt="" className="icon_hover" style={{ marginLeft: "20px" }} /> */}
+                                                <td>
+                                                    <div className="action post">
+                                                        <Link to={`/edit/${details?._id}`}>
+                                                            {/* <img src={edit} alt="" className="icon_hover" /> */}
+                                                            <lord-icon
+                                                                src="https://cdn.lordicon.com/wuvorxbv.json"
+                                                                trigger="hover"
+                                                                colors="primary:#121331,secondary:#198745"
+                                                                style={{ width: "25px", height: "25px" }}>
+                                                            </lord-icon>
+                                                        </Link>
+                                                        <Link to={`/${details?._id}`}>
+                                                            {/* <img src={eye} alt="" className="icon_hover" style={{ marginLeft: "20px" }} /> */}
+                                                            <lord-icon
+                                                                src="https://cdn.lordicon.com/vfczflna.json"
+                                                                trigger="hover"
+                                                                style={{ width: "25px", height: "25px" }}>
+                                                            </lord-icon>
+                                                        </Link>
+                                                        {/* <img src={trash} onClick={handleRemove} style={{ cursor: "pointer"}} className="icon_hover" /> */}
                                                         <lord-icon
-                                                            src="https://cdn.lordicon.com/vfczflna.json"
+                                                            src="https://cdn.lordicon.com/skkahier.json"
                                                             trigger="hover"
-                                                            style={{ width: "25px", height: "25px", marginLeft: "14px" }}>
+                                                            colors="primary:#c71f16"
+                                                            style={{ width: "25px", height: "25px", cursor: "pointer" }}
+                                                            onClick={() => deleteItem(details?._id)}>
                                                         </lord-icon>
-                                                    </Link>
-                                                    {/* <img src={trash} onClick={handleRemove} style={{ cursor: "pointer", marginLeft: "14px" }} className="icon_hover" /> */}
-                                                    <lord-icon
-                                                        src="https://cdn.lordicon.com/skkahier.json"
-                                                        trigger="hover"
-                                                        colors="primary:#c71f16"
-                                                        style={{ width: "25px", height: "25px", cursor: "pointer", marginLeft: "14px" }}
-                                                        onClick={() => deleteItem(details?._id)}>
-                                                    </lord-icon>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </>

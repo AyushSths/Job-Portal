@@ -138,7 +138,7 @@ function PostJob() {
         <>
             <div className="container blur"></div>
             <div className="post-section">
-                <p style={{ opacity: "0.8", width: "50%", margin: "auto", marginTop: "50px" }}> <Link to="/" className="link">Home</Link> {id ? <span>/ Edit</span> : <span>/Post</span>}</p>
+                <p style={{ opacity: "0.8", margin: "auto", marginTop: "50px" }}> <Link to="/" className="link">Home</Link> {id ? <span>/ Edit</span> : <span>/Post</span>}</p>
                 <div className="post-title" style={{ marginTop: "20px" }}>
                     {id ? <h1>Update Job</h1> : <h1>Post a Job</h1>}
                 </div>

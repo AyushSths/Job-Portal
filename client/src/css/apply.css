@@ -1,5 +1,9 @@
+.apply_section {
+    padding: 0 20px;
+}
+
 .apply_section table {
-    width: 60%;
+    max-width: 1280px;
     margin: auto;
     margin-top: 80px;
     position: relative;
@@ -10,8 +14,20 @@
 .apply_section table tr td {
     border-bottom: 1px solid #dddddd;
     width: 22%;
-    padding: 15px;
+    /* padding: 15px; */
     text-align: center;
+}
+
+.apply_section table tr .action {
+    display: flex;
+    flex-wrap: wrap;
+    /* row-gap: 1px; */
+    justify-content: space-around;
+    align-items: center;
+}
+
+.apply_section table tr .action.post {
+    justify-content: space-between;
 }
 
 .apply_section table tr:nth-child(odd) {

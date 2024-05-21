@@ -124,12 +124,12 @@ function Navbar({ setCondition, setCategory }) {
                                                 </li> : null
                                     }
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/about">About
+                                        <NavLink className="nav-link" to="/">About
                                             <span className='line'></span>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/about">Contact us
+                                        <NavLink className="nav-link" to="/">Contact us
                                             <span className='line'></span>
                                         </NavLink>
                                     </li>
@@ -137,14 +137,8 @@ function Navbar({ setCondition, setCategory }) {
                                         <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Browse Jobs
                                         </NavLink>
-                                        {/* <span className='line'></span> */}
-                                        {/* <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><Link className="dropdown-item" to="#">Action</Link></li>
-                                        <li><Link className="dropdown-item" to="#">Another action</Link></li>
-
-                                    </ul> */}
                                         <div className="dropdown-menu nav-categorey" aria-labelledby="navbarDropdown">
-                                            <table>
+                                            {/* <table>
                                                 <tbody>
                                                     <tr>
                                                         <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Accounting')}><img src={accounting} alt="" /> Accounting / Finance ({jobs?.filter(job => job?.categorey === "Accounting").length})</Link></td>
@@ -163,8 +157,21 @@ function Navbar({ setCondition, setCategory }) {
                                                         <td><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Engineer')}><img src={engineer} alt="" /> Engineer / Architects ({jobs?.filter(job => job?.categorey === "Engineer").length})</Link></td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
-
+                                            </table> */}
+                                            <div className="cat-section">
+                                                <div className="right-cat-section">
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Accounting')}><img src={accounting} alt="" /> Accounting / Finance ({jobs?.filter(job => job?.categorey === "Accounting").length})</Link></p>
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('It')}><img src={it} alt="" /> Information technology ({jobs?.filter(job => job?.categorey === "It").length})</Link></p>
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Education')}><img src={education} alt="" /> Education / Training ({jobs?.filter(job => job?.categorey === "Education").length})</Link></p>
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Research')}><img src={research} alt="" /> Reseach / Consultancy ({jobs?.filter(job => job?.categorey === "Research").length})</Link></p>
+                                                </div>
+                                                <div className="left-cat-section">
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Hr')}><img src={management} alt="" /> Human Resource ({jobs?.filter(job => job?.categorey === "Hr").length})</Link></p>
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Medical')}><img src={medical} alt="" /> Medical / Pharmacy ({jobs?.filter(job => job?.categorey === "Medical").length})</Link></p>
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Music')}><img src={music} alt="" /> Music / Arts ({jobs?.filter(job => job?.categorey === "Music").length})</Link></p>
+                                                    <p><Link className="dropdown-item" to="/categorey" onClick={() => handleCategoryClick('Engineer')}><img src={engineer} alt="" /> Engineer / Architects ({jobs?.filter(job => job?.categorey === "Engineer").length})</Link></p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </li>
 
@@ -180,7 +187,7 @@ function Navbar({ setCondition, setCategory }) {
                                 {
                                     user ?
                                         <>
-                                            <div className="dropdown">
+                                            <div className="dropdown" style={{ marginTop: "7px" }}>
                                                 <Link className="" style={{ textDecoration: "none" }} to="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {/* <img src={user_img} />  */}
                                                     <lord-icon
@@ -223,18 +230,24 @@ function Navbar({ setCondition, setCategory }) {
                                                 </ul>
                                             </div>
                                         </> :
-                                        <>
-                                            <NavLink className="nav-link" to="/login" style={{ display: "inline" }}>
-                                                {/* <img src={user_img} alt="" /> */}
+                                        <div className='user_profile'>
+                                            <NavLink to="/login">
                                                 <lord-icon
+                                                    className="pro"
                                                     src="https://cdn.lordicon.com/hrjifpbq.json"
                                                     trigger="hover"
                                                     colors="primary:#e4e4e4"
-                                                    style={{ width: "32px", height: "32px" }}>
+                                                    style={{ width: "32px", height: "32px", marginTop: "7px" }}>
                                                 </lord-icon>
-                                                <span style={{ position: "relative", top: "-11px", marginLeft: "5px" }}>Login /</span> </NavLink>
-                                            <NavLink className="nav-link" to="/register" style={{ display: "inline", position: "relative", top: "-11px", marginLeft: "-30px", }}>Register</NavLink>
-                                        </>
+                                            </NavLink>
+                                            <div className="user_name">
+                                                <NavLink className="nav-link" to="/login">
+                                                    {/* <img src={user_img} alt="" /> */}
+                                                    <span>Login /</span>
+                                                </NavLink>
+                                                <NavLink className="nav-link" to="/register" >Register</NavLink>
+                                            </div>
+                                        </div>
                                 }
 
                             </div>
@@ -242,29 +255,30 @@ function Navbar({ setCondition, setCategory }) {
 
                                 {
                                     user?.role === "company" ?
-                                        <Link className='post-link' to='/post'><span><lord-icon
-                                            src="https://cdn.lordicon.com/fowixcuo.json"
-                                            trigger="hover"
-                                            colors="primary:#ffffff"
-                                            style={{ width: "23px", height: "23px" }}>
-                                        </lord-icon><label>Post job</label></span></Link> :
-                                        user?.role === "job-seeker" ?
-                                            <Link className='post-link' to='/login' onClick={() => {
-                                                alert("User role is not company. Please login into a job-seeker account.")
-                                            }}><button className='post-btn'><lord-icon
+                                        <Link className='post-link' to='/post'>
+                                            <button className='post-btn'><lord-icon
                                                 src="https://cdn.lordicon.com/fowixcuo.json"
                                                 trigger="hover"
                                                 colors="primary:#ffffff"
                                                 style={{ width: "23px", height: "23px" }}>
-                                            </lord-icon><label>Post job</label></button>
-                                            </Link> :
-                                            <Link className='post-link' to='/login'><span><lord-icon
-                                                src="https://cdn.lordicon.com/fowixcuo.json"
-                                                trigger="hover"
-                                                colors="primary:#ffffff"
-                                                style={{ width: "23px", height: "23px" }}>
-                                            </lord-icon><label>Post job</label></span>
-                                            </Link>
+                                            </lord-icon><label>Post job</label></button></Link> : null
+                                    // user?.role === "job-seeker" ?
+                                    //     <Link className='post-link' to='/login' onClick={() => {
+                                    //         alert("User role is not company. Please login into a job-seeker account.")
+                                    //     }}><button className='post-btn'><lord-icon
+                                    //         src="https://cdn.lordicon.com/fowixcuo.json"
+                                    //         trigger="hover"
+                                    //         colors="primary:#ffffff"
+                                    //         style={{ width: "23px", height: "23px" }}>
+                                    //     </lord-icon><label>Post job</label></button>
+                                    //     </Link> :
+                                    //     <Link className='post-link' to='/login'><span><lord-icon
+                                    //         src="https://cdn.lordicon.com/fowixcuo.json"
+                                    //         trigger="hover"
+                                    //         colors="primary:#ffffff"
+                                    //         style={{ width: "23px", height: "23px" }}>
+                                    //     </lord-icon><label>Post job</label></span>
+                                    //     </Link>
                                 }
                             </div>
                         </div>
