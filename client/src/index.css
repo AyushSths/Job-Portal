@@ -418,4 +418,10 @@ h1 {
     padding: 8px 5px;
     margin-top: 16px;
   }
+
+  .post-table tr td {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+  }
 }
