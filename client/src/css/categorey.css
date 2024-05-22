@@ -1,5 +1,6 @@
 .job-cat {
-    width: 55%;
+    max-width: 1134px;
+    margin: 0 auto;
     -webkit-box-shadow: 5px 10px 8px #e4e4e4;
     box-shadow: 5px 10px 8px #e4e4e4;
     margin-top: 240px;

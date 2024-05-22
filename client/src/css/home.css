@@ -110,7 +110,7 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    width: 60%;
+    max-width: 1134px;
     padding: 30px;
     position: relative;
     top: -40px;
@@ -156,7 +156,7 @@
 .section-list {
     background-color: #ffffff;
     border-radius: 5px;
-    width: 60%;
+    max-width: 1134px;
     margin: auto;
     padding: 15px;
     -webkit-box-shadow: 5px 10px 8px #e4e4e4;

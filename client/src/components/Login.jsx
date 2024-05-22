@@ -5,7 +5,6 @@ import home_image from '../assets/images/home_image.jpg'
 import { useState } from 'react'
 import axios from "axios"
 import { useEffect } from 'react'
-import SetTimeout from './pages/SetTimeout'
 import { useDispatch } from 'react-redux';
 import { setUser } from './redux/slice/userSlice'
 
