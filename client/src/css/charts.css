@@ -1,0 +1,46 @@
+.charts-section {
+    max-width: 1320px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.charts-section div {
+    margin-bottom: 40px;
+    /* border: 1px solid; */
+}
+
+.first-section,
+.second-section,
+.third-section {
+    width: 100%;
+    background-color: #eee;
+    border-radius: 10px;
+    height: 500px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+.first-section {
+    background-color: #eee;
+    width: 100%;
+} */
+
+.second-section {
+    width: 50%;
+}
+
+.third-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.lower-part {
+    display: flex;
+    column-gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+}

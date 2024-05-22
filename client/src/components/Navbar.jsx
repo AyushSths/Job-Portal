@@ -128,11 +128,14 @@ function Navbar({ setCondition, setCategory }) {
                                             <span className='line'></span>
                                         </NavLink>
                                     </li>
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link" to="/">Contact us
-                                            <span className='line'></span>
-                                        </NavLink>
-                                    </li>
+                                    {
+                                        user?.role === "company" ?
+                                            <li className="nav-item">
+                                                <NavLink className="nav-link" to="/charts">Charts
+                                                    <span className='line'></span>
+                                                </NavLink>
+                                            </li> : null
+                                    }
                                     <li className="nav-item dropdown">
                                         <NavLink className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Browse Jobs

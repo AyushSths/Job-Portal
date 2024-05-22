@@ -348,6 +348,14 @@ h1 {
     padding: 2px;
     font-size: 11px;
   }
+
+  .charts-section .lower-part {
+    flex-wrap: wrap;
+  }
+
+  .charts-section .lower-part div {
+    width: 100%;
+  }
 }
 
 @media (max-width:540px) {

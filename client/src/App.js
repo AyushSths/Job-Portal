@@ -12,6 +12,7 @@ import View from './components/pages/View';
 import SignUp from './components/SignUp';
 import PostJob from './components/pages/PostJob';
 import Apply from './components/pages/Apply';
+import Charts from './components/pages/Charts';
 import PostedJobs from './components/pages/PostedJobs';
 import SearchJobs from './components/pages/SearchJobs';
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/post" element={<PostJob />} />
           <Route path="/edit/:id" element={<PostJob />} />
           <Route path="/posted" element={<PostedJobs />} />
+          <Route path="/charts" element={<Charts />} />
         </Routes>
         <Footer />
       </div>

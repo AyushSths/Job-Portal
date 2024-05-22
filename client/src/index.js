@@ -9,6 +9,7 @@ import './css/categorey.css'
 import './css/view.css'
 import './css/post.css'
 import './css/apply.css'
+import './css/charts.css'
 import App from './App';
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals';
