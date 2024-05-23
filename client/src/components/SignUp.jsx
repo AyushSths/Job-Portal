@@ -10,6 +10,8 @@ import ErrorMessage from './pages/ErrorMessage'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Register from './Register'
 import { setUser } from './redux/slice/userSlice'
+import google from '../assets/images/google.png'
+import facebook from '../assets/images/facebook.png'
 
 function SignUp() {
     const throwIfNamespace = false
@@ -63,7 +65,7 @@ function SignUp() {
             </div> */}
             <div className="container blur"></div>
 
-            <div className="user-form" style={{ marginBottom: "100px" }}>
+            <div className="user-form">
                 <div className="register-section">
                     <div className="section-content">
                         <h1 style={{ textAlign: "center" }}>Jobs Portal</h1>
@@ -71,7 +73,7 @@ function SignUp() {
                         <p className="section-btn" style={{ fontSize: "18px" }}>Already got an account? <Link class="btn-link" to="/login"><img src={left_arrow} alt="" className="r-arrow" /> Log in </Link></p>
                     </div>
                 </div>
-                <form class="form" style={{ borderRadius: "0px 20px 20px 0px" }} onSubmit={handleSubmit(onSubmit)}>
+                <form class="form sign-form" onSubmit={handleSubmit(onSubmit)}>
                     <h1 style={{ textAlign: "center" }}>Sign Up</h1>
                     <div className="uname-input">
                         <div class="flex-column">
@@ -182,6 +184,14 @@ function SignUp() {
                         <ErrorMessage msg={errors.contact?.message} />
                     </div>
                     <button class="button-submit">Sign Up</button>
+                    <p class="p line">Or With</p>
+                    <div class="medias">
+                        <div className="google"><img src={google} alt="" /> Google   </div>
+                        <div className="facebook"> <img src={facebook} alt="" /> Facebook </div>
+                    </div>
+                    <div className="n-sign">
+                        <p className="" style={{ fontSize: "18px" }}>Already have an account? <Link class="btn-link" to="/login">Log in</Link></p>
+                    </div>
                 </form>
             </div>
         </>

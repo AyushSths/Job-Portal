@@ -5,6 +5,9 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    max-width: 1780px;
+    margin: 80px auto;
+    padding: 0 20px;
 }
 
 .form {
@@ -26,7 +29,11 @@
     -ms-flex-line-pack: center;
     align-content: center;
     position: relative;
-    top: 100px;
+    /* top: 100px; */
+}
+
+.form.sign-form {
+    border-radius: 0 20px 20px 0;
 }
 
 ::-webkit-input-placeholder {
@@ -117,6 +124,40 @@
     font-weight: 400;
 }
 
+.medias div {
+    width: 100%;
+    border: 1px solid #e4e3e3;
+    border-radius: 10px;
+    padding: 13px;
+    text-align: center;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background-color: #f7f7f7;
+    transition: 0.5s ease;
+}
+
+.medias div:hover {
+    cursor: pointer;
+    background-color: #e4e4e4;
+}
+
+.n-sign {
+    display: none;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.n-sign p .btn-link:hover {
+    opacity: 1;
+    color: green;
+}
+
 .span {
     font-size: 14px;
     margin-left: 5px;
@@ -197,10 +238,10 @@
     -ms-flex-align: center;
     align-items: center;
     position: relative;
-    top: 101px;
+    /* top: 101px; */
     /* left: 450px; */
     width: 32%;
-    height: 564px;
+    height: 695px;
     background-color: #2b9f5a;
     color: #f0f0f0;
     border-radius: 0 20px 20px 0;
@@ -217,7 +258,7 @@
     -ms-flex-align: center;
     align-items: center;
     position: relative;
-    top: 100px;
+    /* top: 100px; */
     /* left: 450px; */
     width: 32%;
     height: 1043px;

@@ -238,8 +238,18 @@ h1 {
     padding: 25px 25px;
   }
 
-  .user-form .form-section {
+  .user-form .form,
+  .user-form .form.sign-form {
+    border-radius: 20px;
+  }
+
+  .user-form .form-section,
+  .user-form .register-section {
     display: none;
+  }
+
+  .user-form form .n-sign {
+    display: block;
   }
 }
 
