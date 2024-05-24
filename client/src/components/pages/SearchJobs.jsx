@@ -83,15 +83,7 @@ function SearchJobs({ setCategory, setSearchTerm, search_term }) {
                     </form>
                 </div>
                 <div className="section-list job-cat" style={{ position: "relative" }}>
-                    <div className="section-titles" style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
-                        <h5>Searched jobs : {search_term}</h5>
-                        <ul className="tab-menu" style={{ display: "flex" }}>
-                            <li className="menu-item"><a className='item-link' href="#top-jobs" onClick={() => handleJobTpye('top')}>Top jobs</a></li>
-                            <li className="menu-item"><Link className='item-link' to="#hot-jobs" onClick={() => handleJobTpye('hot')}>Hot jobs</Link></li>
-                            <li className="menu-item"><Link className='item-link' to="#featured-jobs" onClick={() => handleJobTpye('featured')} >Featured jobs</Link></li>
-                            <li className="menu-item"><Link className='item-link' to="#normal-jobs" onClick={() => handleJobTpye('normal')}>Normal jobs</Link></li>
-                        </ul>
-                    </div>
+                    <h5>Searched jobs : {search_term}</h5>
                     <div className="jobs">
                         {
                             jobs.length != 0 ?
@@ -99,40 +91,40 @@ function SearchJobs({ setCategory, setSearchTerm, search_term }) {
                                     // console.log("Image URLs:", item?.image);
 
                                     return (<>
-                                        {item.type == type ?
-                                            <div className="top-jobs" >
-                                                <div className="job-items">
-                                                    <div className="item-info">
-                                                        <div className="item-image">
-                                                            <Link className="com-img" to={`/${item._id}`}><img src={item.image[0] || imgError} alt="img" /></Link>
-                                                        </div>
-                                                        <div className="item-content">
-                                                            <div className="main-meta">
-                                                                <div className="title-link">
-                                                                    <strong><Link to={`/${item._id}`} className='link job-title'>{item?.name} required.</Link></strong>
-                                                                    <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
-                                                                </div>
-                                                            </div>
-                                                            <div className="meta-bottom">
-                                                                <div className="wraper type-wrap">
-                                                                    <span><img src={location} alt="" /> {item.location}</span>
-                                                                </div>
-                                                                <div className="wraper time-wrap">
-                                                                    <span className="time"><img src={clock} alt="" /> Full Time</span>
-                                                                </div>
-                                                                <div className="wraper price-wrap">
-                                                                    <span><img src={money} alt="" /> {item.offeredSalary == "Negotiable" || item.offeredSalary == "negotiable" ? item.offeredSalary : `Rs.${item.offeredSalary}`}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="apply-btn">
-                                                            <Link to={`/${item._id}`} className='app-link'><button>View Details</button></Link>
-                                                        </div>
 
+                                        <div className="top-jobs" >
+                                            <div className="job-items">
+                                                <div className="item-info">
+                                                    <div className="item-image">
+                                                        <Link className="com-img" to={`/${item._id}`}><img src={item.image[0] || imgError} alt="img" /></Link>
                                                     </div>
+                                                    <div className="item-content">
+                                                        <div className="main-meta">
+                                                            <div className="title-link">
+                                                                <strong><Link to={`/${item._id}`} className='link job-title'>{item?.name} required.</Link></strong>
+                                                                <h6 style={{ opacity: "0.8" }}>{item.company}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div className="meta-bottom">
+                                                            <div className="wraper type-wrap">
+                                                                <span><img src={location} alt="" /> {item.location}</span>
+                                                            </div>
+                                                            <div className="wraper time-wrap">
+                                                                <span className="time"><img src={clock} alt="" /> Full Time</span>
+                                                            </div>
+                                                            <div className="wraper price-wrap">
+                                                                <span><img src={money} alt="" /> {item.offeredSalary == "Negotiable" || item.offeredSalary == "negotiable" ? item.offeredSalary : `Rs.${item.offeredSalary}`}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="apply-btn">
+                                                        <Link to={`/${item._id}`} className='app-link'><button>View Details</button></Link>
+                                                    </div>
+
                                                 </div>
-                                            </div > : null
-                                        }
+                                            </div>
+                                        </div >
+
                                     </>)
                                 }) : (<section class="page_404">
                                     <div class="container_box">
