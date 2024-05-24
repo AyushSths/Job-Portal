@@ -17,3 +17,8 @@
     mask-image: linear-gradient(#000, rgba(0, 0, 0, 0));
     /* -webkitmask-image: linear-gradient(#000, rgba(0, 0, 0, 1)); */
 }
+
+.loader {
+    position: relative;
+    bottom: 80px;
+}
